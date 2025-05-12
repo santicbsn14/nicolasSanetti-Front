@@ -1,0 +1,126 @@
+.virtudes-section {
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(at top left, #1f1d1a, #000000);
+    color: white;
+    padding: 80px 24px;
+  }
+  
+  .virtudes-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .virtudes-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.2), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .virtudes-grid {
+    position: relative;
+    z-index: 1; /* Para estar encima del fondo */
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  
+  @media (min-width: 640px) {
+    .virtudes-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .virtud-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .virtud-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  
+  .virtud-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-size: 24px;
+  }
+  
+  .virtud-text {
+    max-width: 320px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  /* Seccion de Nicolas*/
+  .nicolas-section {
+    background-color: #ffffff;
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .nicolas-container {
+    display: flex;
+    align-items: flex-start ;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 40px;
+    gap: 60px;
+  }
+  
+  .nicolas-image {
+    width: 500px;
+    height: 662px;
+    max-width: 500px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  
+  .nicolas-text {
+    margin-top: 45px;
+    width: 464px;
+  }
+  
+  .nicolas-text h2,
+  .nicolas-text h3 {
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+  }
+  
+  .nicolas-text h3 {
+    margin-bottom: 20px;
+  }
+  
+  .nicolas-text p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 6%;
+    color: #333;
+    text-align: justify;
+  }
+  

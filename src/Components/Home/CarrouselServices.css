@@ -1,0 +1,99 @@
+.carousel-section {
+    background-color: white;
+    padding: 5rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel-container {
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .carousel-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .carousel-text {
+    text-align: left;
+  }
+  
+  .carousel-title {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .carousel-dot {
+    color: #E1A325;
+    margin: 0 0.5rem;
+  }
+  
+  
+  .carousel-paragraph {
+    color: black;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .carousel-images {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Cambiado de center a flex-start */
+    padding-left: 2rem; /* Agregado para dar más separación del borde izquierdo */
+  }
+  
+  
+  .carousel-main-img {
+    background: transparent;
+    width: 379.73px;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    padding: 15px;
+  }
+  
+  .carousel-next-img {
+    background: transparent;
+    width: 288.6px;
+    height: 418px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    padding: 15px;
+    position: absolute;
+    left: 60%;
+  }
+  
+  .carousel-buttons {
+    position: static; /* quitamos position absolute */
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 12rem;
+    grid-column: 1 / 2; /* que se ubiquen bajo el texto en pantallas grandes */
+  }
+  
+  
+  .carousel-btn {
+    padding: 0.5rem;
+    background-color: #e5e7eb;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .carousel-btn:hover {
+    background-color: #d1d5db;
+  }
+  
