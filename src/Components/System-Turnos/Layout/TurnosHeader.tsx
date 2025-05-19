@@ -1,5 +1,4 @@
 // components/TurnosHeader.tsx
-import React from 'react';
 import Logo  from '../../Imagenes/logoPortTurnos.png'
 import '../turnos.css';
 

@@ -9,9 +9,9 @@
   }
   
   .navbar-turnos__titulo {
-    font-size: 20px;
-    font-weight: 500;
-    color: #202020;
+    font-size: 16px;
+    font-weight: 300;
+    color: #000000;
   }
   
   .navbar-turnos__login {
