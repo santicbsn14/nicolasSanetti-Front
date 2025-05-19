@@ -1,0 +1,229 @@
+.services {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Importante para que padding no afecte el ancho */
+    overflow: hidden; /* Contiene a los hijos que podrían desbordarse */
+  }
+  
+  /* Contenedor de la imagen de portada */
+  .port-services {
+    width: 100%;
+    position: relative;
+    overflow: hidden; /* Contiene a la imagen si es muy grande */
+  }
+  
+  /* Imagen de portada */
+  .port-services-img {
+    width: 100%;
+    height: 508px;
+    display: block;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    max-width: 100%; /* Limita el ancho máximo */
+  }
+  
+  /* Mosaico negro con los precios */
+  .mosaico-precios {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    box-sizing: border-box; /* Importante para que padding no afecte el ancho */
+  }
+
+ /* Services.css */
+
+/* Estilos generales */
+.services {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  /* Estilos para la portada */
+  .port-services {
+    width: 100%;
+    position: relative;
+  }
+  
+  .port-services-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+  }
+  
+  .titulo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Estilos para el mosaico de precios */
+  .mosaico-precios {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .divider {
+    margin: 0 15px;
+  }
+  
+  /* Estilos para la sección de servicios */
+  .servicios-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .servicio {
+    width: 100%;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  .servicio-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 240px); /* Margen de 120px a cada lado */
+    max-width: 1300px; /* Para evitar que se estire demasiado en pantallas muy grandes */
+    gap: auto; /* Gap automático como mencionaste */
+  }
+  
+  .servicio-content.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .servicio-imagen {
+    width: 593px;
+    height: 500px;
+    overflow: hidden;
+  }
+  
+  .servicio-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .servicio-texto {
+    width: 593px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; 
+  }
+  
+  .servicio-texto h2 {
+    color: black;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: left; 
+  }
+  
+  .servicio-texto p {
+    color: black;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .servicio-precios {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .precio-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .precio-nombre {
+    font-weight: 600;
+  }
+  
+  .precio-valor {
+    font-weight: 500;
+  }
+  
+  /* Media queries para responsividad */
+  @media (max-width: 1366px) {
+    .servicio-content {
+      width: calc(100% - 100px); /* Reducimos los márgenes laterales */
+    }
+    
+    .servicio-imagen, .servicio-texto {
+      width: 500px;
+    }
+    
+    .servicio-texto {
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .servicio-content {
+      flex-direction: column;
+      gap: 50px;
+    }
+    
+    .servicio-content.reverse {
+      flex-direction: column;
+    }
+    
+    .servicio-imagen, .servicio-texto {
+      width: 100%;
+    }
+    
+    .servicio-imagen {
+      height: auto;
+      max-height: 500px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .servicio-content {
+      width: calc(100% - 40px);
+    }
+    
+    .titulo-overlay {
+      font-size: 3rem;
+    }
+    
+    .servicio {
+      padding: 60px 0;
+    }
+  }

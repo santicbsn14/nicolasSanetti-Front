@@ -1,0 +1,141 @@
+.titulo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4rem;
+    font-weight:normal;
+    text-transform: uppercase;
+    letter-spacing: 4%;
+  }
+  .divider {
+    margin: 0 15px;
+  }
+  
+  /* Contenedor principal de la sección */
+  .historia {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Importante para que padding no afecte el ancho */
+    overflow: hidden; /* Contiene a los hijos que podrían desbordarse */
+  }
+  
+  /* Contenedor de la imagen de portada */
+  .port-historia {
+    width: 100%;
+    position: relative;
+    overflow: hidden; /* Contiene a la imagen si es muy grande */
+  }
+  
+  /* Imagen de portada */
+  .port-historia-img {
+    width: 1512px;
+    height: 508px;
+    display: block;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    max-width: 100%; /* Limita el ancho máximo */
+  }
+  
+  /* Mosaico negro con los precios */
+  .mosaico-precios {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    box-sizing: border-box; /* Importante para que padding no afecte el ancho */
+  }
+  /* Estilos para el contenido de Historia */
+.historia-contenido {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    max-width: 1512px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+  }
+  
+  /* Estilos para cada sección */
+  .historia-seccion {
+    margin-bottom: 60px;
+  }
+  
+  /* Estilos para los títulos */
+  .historia-titulo {
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+  }
+  
+  /* Punto dorado */
+  .punto-dorado {
+    color: #D4AF37;
+    font-size: 28px;
+    vertical-align: middle;
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+  
+  /* Contenedor de imágenes */
+  .historia-imagen-container {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  /* Imágenes */
+  .historia-imagen {
+    width: 659px;
+    height: 452px;
+    display: block;
+    object-fit: cover;
+  }
+  
+  /* Texto descriptivo */
+  .historia-texto {
+    font-size: 16px;
+    line-height: 1.6;
+    width: 659px;
+    color: #333;
+    margin: 0;
+    text-align: justify;
+  }
+  
+  /* Media queries para responsividad */
+  @media (min-width: 768px) {
+    .historia-contenido {
+      padding: 60px 40px;
+    }
+    
+    .historia-titulo {
+      font-size: 28px;
+    }
+    
+    .historia-texto {
+      font-size: 17px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .historia-contenido {
+      padding: 80px 60px;
+    }
+    
+    .historia-titulo {
+      font-size: 32px;
+    }
+  }

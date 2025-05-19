@@ -82,6 +82,7 @@ const Navbar: FC = () => {
             <li>
               <NavLink
                 to="/turnos"
+                target='_blank'
                 className={({ isActive }) =>
                   isActive ? 'navbar__link active' : 'navbar__link'
                 }
