@@ -13,7 +13,7 @@ import '../turnos.css'
 const Turnos : FC = () => {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Lavado y Peinado')
     return (
-        <section style={{backgroundColor:'white', paddingBottom:'8rem'}}>
+        <section style={{backgroundColor:'white', paddingBottom:'8rem', transform:'scale(0.9)'}}>
                   <div className="turnos-topbar">
         <div className="turnos-topbar__location">
           <FontAwesomeIcon icon={faLocationDot}/>
