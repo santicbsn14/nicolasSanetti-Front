@@ -1,10 +1,10 @@
 import type {FC} from 'react'
 import port from '../Imagenes/port-services.png'
-import imagen1 from '../Imagenes/historiaUno.png'
-import imagen2 from '../Imagenes/historiaDos.png'
-import imagen3 from '../Imagenes/historiaTres.png'
-import imagen4 from '../Imagenes/historiaCuatro.png'
-import imagen5 from '../Imagenes/historiaCinco.png'
+import imagen1 from '../Imagenes/historiaUno.webp'
+import imagen2 from '../Imagenes/historiaDos_.webp'
+import imagen3 from '../Imagenes/historiaTres_.webp'
+import imagen4 from '../Imagenes/historiaCuatro_.webp'
+import imagen5 from '../Imagenes/historiaCinco_.webp'
 import './Historia.css'
 const Historia : FC = () =>{
     return (

@@ -1,20 +1,21 @@
 import React from 'react';
-import portHome from '../Imagenes/port-NicoSanetti.jpg';
+import portHome from '../Imagenes/port-NicoSanetti-.webp';
 import ColorCarousel from './CarrouselServices';
 import estrellitas from '../Imagenes/estrellitas.png';
 import spa from '../Imagenes/spa-y-relax.png';
 import infinito from '../Imagenes/infinito.png';
 import librito from '../Imagenes/librito.png';
-import fotoNicolas from '../Imagenes/fotoNicolas.png'
+import fotoNicolas from '../Imagenes/fotoNicolas_.webp'
 import './Home.css'
 const Home: React.FC = () => {
   return (
     <div className="font-sans text-gray-900">
       {/* Portada */}
-      <section className="w-full h-[90vh] bg-cover bg-center" style={{
+      <section className="" style={{
         backgroundImage: `url(${portHome})`, height: '816px', backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        width:'100%'
       }}>
         {/* Dejá el espacio para que se cargue la imagen desde el estilo */}
       </section>

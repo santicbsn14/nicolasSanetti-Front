@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
-import itemUno from '../Imagenes/itemUno.png';
-import itemDos from '../Imagenes/itemDos.png';
-import itemTres from '../Imagenes/itemTres.png';
-import itemCuatro from '../Imagenes/itemCuatro.png'
+import itemUno from '../Imagenes/itemUno_converted.webp';
+import itemDos from '../Imagenes/itemDos_converted.webp';
+import itemTres from '../Imagenes/rectangulo.png';
+import itemCuatro from '../Imagenes/itemCuatro_converted.webp'
+import itemCinco from '../Imagenes/Rectangle 18.png'
 import './CarrouselServices.css';
 
 type Slide = {
   title: string;
   paragraphs: string[];
-  img: string;
+  img: string 
 };
 
 const slides: Slide[] = [
@@ -23,20 +24,20 @@ const slides: Slide[] = [
     img: itemUno,
   },
   {
-    title: 'ILUMINACIÓN',
-    paragraphs: [
-      'Nuestro corte está diseñado exclusivamente para vos, adaptándose a la textura de tu cabello, tu estilo personal y tu rutina diaria. Buscamos crear un look que no solo te favorezca, sino que también sea práctico y fácil de mantener, para que siempre luzcas impecable sin esfuerzo.',
-      'Cada corte es único, pensado para resaltar tu belleza natural y brindarte comodidad, equilibrio y armonía con tu imagen.',
-    ],
-    img: itemDos,
-  },
-  {
-    title: 'CORTE Y ESTILO',
+    title: 'LAVADO',
     paragraphs: [
       'El servicio más esperado del salón, diseñado para brindarte una experiencia de relajación absoluta. Contamos con un lavacabezas premium con inclinación a 180 grados, que se adapta perfectamente para ofrecerte el máximo confort.',
       'Cada lavado se convierte en un verdadero momento de disfrute, combinando masajes capilares, productos de alta calidad y un ambiente pensado para tu bienestar. Más que un simple paso en tu rutina de belleza, es una pausa de relax total, donde podés desconectarte y renovar energías mientras cuidamos tu cabello.',
     ],
     img: itemTres,
+  },
+  {
+    title: 'CORTE Y ESTILO',
+    paragraphs: [
+      'Nuestro corte está diseñado exclusivamente para vos, adaptándose a la textura de tu cabello, tu estilo personal y tu rutina diaria. Buscamos crear un look que no solo te favorezca, sino que también sea práctico y fácil de mantener, para que siempre luzcas impecable sin esfuerzo.',
+            'Cada corte es único, pensado para resaltar tu belleza natural y brindarte comodidad, equilibrio y armonía con tu imagen.',
+    ],
+    img: itemDos,
   },
   {
     title: 'PEINADO',
@@ -46,6 +47,14 @@ const slides: Slide[] = [
     ],
     img: itemCuatro,
   },
+  {
+  title: 'BALAYAGE',
+  paragraphs: [
+    'El balayage es una técnica de coloración que ilumina el cabello de forma natural, creando un efecto degradado sutil desde la raíz hasta las puntas. Aporta luz, movimiento y dimensión sin necesidad de retoques frecuentes.',
+    'Nuestro equipo trabaja de forma personalizada, eligiendo los tonos adecuados para resaltar tus facciones y armonizar con tu base natural. Logramos resultados elegantes, modernos y duraderos, cuidando siempre la salud del cabello.',
+  ],
+  img: itemCinco,
+}
 ];
 
 const ColorCarousel: React.FC = () => {

@@ -1,24 +1,269 @@
+/* Navbar principal */
 .navbar-turnos {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    padding: 0 40px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 40px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.navbar-turnos__titulo {
+  font-size: 16px;
+  font-weight: 300;
+  color: #000000;
+  margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: font-size 0.3s ease;
+}
+
+.navbar-turnos__login,
+.navbar-turnos__close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #888;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.navbar-turnos__login:hover,
+.navbar-turnos__close:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.navbar-turnos__logo-section {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1;
+}
+
+.navbar-turnos__logo {
+  width: 60px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Sección de usuario */
+.navbar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.navbar__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.navbar__avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.navbar__username {
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.navbar__username:hover {
+  color: #3b82f6;
+}
+
+.navbar__dropdown {
+  position: absolute;
+  top: 140%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  overflow: hidden;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar__dropdown button {
+  background: none;
+  border: none;
+  color: #333;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.navbar__dropdown button:last-child {
+  border-bottom: none;
+}
+
+.navbar__dropdown button:hover {
+  background-color: #f8fafc;
+  color: #3b82f6;
+}
+
+/* Responsive Design */
+
+/* Tablet - 850px hacia abajo */
+@media (max-width: 850px) {
+  .navbar-turnos {
+    height: 70px;
+    padding: 0 20px;
   }
   
   .navbar-turnos__titulo {
-    font-size: 16px;
-    font-weight: 300;
-    color: #000000;
+    font-size: 14px;
+    margin-left: 8px;
   }
   
-  .navbar-turnos__login {
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: #888;
-    cursor: pointer;
+  .navbar-turnos__logo {
+    width: 50px;
+    height: 25px;
   }
   
+  .navbar__username {
+    max-width: 120px;
+    font-size: 0.85rem;
+  }
+  
+  .navbar__avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+  
+  .navbar__dropdown {
+    min-width: 160px;
+    right: -10px;
+  }
+  
+  .navbar__dropdown button {
+    padding: 0.65rem 0.85rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile - 480px hacia abajo */
+@media (max-width: 480px) {
+  .navbar-turnos {
+    height: 60px;
+    padding: 0 15px;
+  }
+  
+  .navbar-turnos__titulo {
+    font-size: 12px;
+    margin-left: 6px;
+    max-width: 180px;
+  }
+  
+  .navbar-turnos__logo {
+    width: 45px;
+    height: 22px;
+  }
+  
+  .navbar-turnos__login,
+  .navbar-turnos__close {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+  
+  .navbar__username {
+    display: none; /* Ocultar nombre en mobile muy pequeño */
+  }
+  
+  .navbar__user {
+    gap: 0.25rem;
+  }
+  
+  .navbar__avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+  
+  .navbar__dropdown {
+    min-width: 140px;
+    right: -5px;
+    top: 120%;
+  }
+  
+  .navbar__dropdown button {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile muy pequeño - 320px hacia abajo */
+@media (max-width: 320px) {
+  .navbar-turnos {
+    height: 55px;
+    padding: 0 10px;
+  }
+  
+  .navbar-turnos__titulo {
+    font-size: 10px;
+    max-width: 140px;
+  }
+  
+  .navbar-turnos__logo {
+    width: 40px;
+    height: 20px;
+  }
+  
+  .navbar__avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
+  }
+  
+  .navbar__dropdown {
+    min-width: 120px;
+  }
+}

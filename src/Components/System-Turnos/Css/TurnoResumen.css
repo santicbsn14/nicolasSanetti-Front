@@ -1,0 +1,30 @@
+.turno-resumen-box {
+    background-color: #fff;
+    color: #333;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    max-width: 320px;
+    font-size: 14px;
+  }
+  
+  .turno-resumen-titulo {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .turno-resumen-separador {
+    border: none;
+    border-top: 2px solid #eee;
+    margin-bottom: 16px;
+  }
+  
+  .turno-resumen-detalles {
+    background-color: #f8f8f8;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+  

@@ -1,0 +1,32 @@
+.turno-confirmado-wrapper {
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+}
+.turno-confirmado-wrapper h3{
+    color: black;
+}
+.turno-info-box {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.turno-info-box > div {
+  margin-bottom: 1.2rem;
+}
+
+.turno-info-box strong {
+  display: block;
+  font-size: 1rem;
+  color: #222;
+}
+
+.turno-info-box p {
+  margin: 0.25rem 0 0 0;
+  color: #555;
+}

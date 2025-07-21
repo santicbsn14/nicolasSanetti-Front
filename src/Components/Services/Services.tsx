@@ -1,11 +1,12 @@
 import type {FC} from 'react'
-import port from '../Imagenes/port-services-port.png'
-import primerService from '../Imagenes/primerService.png'
-import segundoService from '../Imagenes/ServicioDos.png'
-import tercerService from '../Imagenes/servicioTres.png'
+import port from '../Imagenes/port-services-port_.webp'
+import primerService from '../Imagenes/primerService_.webp'
+import segundoService from '../Imagenes/ServicioDos_.webp'
+import tercerService from '../Imagenes/servicioTres_.webp'
 import './Services.css'
 
 const Services : FC = () =>{
+  
     const servicios = [
         {
           titulo: 'LAVADO Y PEINADO',
