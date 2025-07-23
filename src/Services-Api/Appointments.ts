@@ -20,7 +20,9 @@ export const makeAppointment = async (appointmentData: Appointment) => {
 
 export const getAppointments = async () => {
   try {
-    const response = await axios.get(API_BASE);
+    const response = await axios.get(API_BASE, {
+    withCredentials: true, // Si usas cookies de autenticación
+});;
     return response.data;
   } catch (error) {
     throw new Error(handleError(error));
