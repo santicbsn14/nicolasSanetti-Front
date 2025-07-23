@@ -1,28 +1,20 @@
 import axios from "axios";
-import {handleError} from '../Utils/ErrorManager'
+import { handleError } from '../Utils/ErrorManager';
 import { getAuth } from "firebase/auth";
 
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/roles';
+
 export const getRoles = async () => {
-    try {
-    const auth = getAuth(); // Obtener la instancia de autenticación de Firebase
-    const token = await auth.currentUser?.getIdToken(); // Obtener el token del usuario autenticado
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
 
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
-
-    const response = await axios.get(
-      'http://localhost:8080/api/roles',  
-      {
-        headers: {
-          Authorization: `Bearer ${token}` // Agregar el token en la cabecera
-        }
-      }
-    );
+    const response = await axios.get(API_BASE, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
 
     return response.data;
   } catch (error) {
-    const errorhandler = handleError(error);
-    throw Error(errorhandler);
+    throw new Error(handleError(error));
   }
-}
+};

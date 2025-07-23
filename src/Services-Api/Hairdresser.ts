@@ -1,9 +1,11 @@
 import axios from 'axios';
 import mongoose from 'mongoose';
 import { getAuth } from 'firebase/auth';
-import {handleError} from '../Utils/ErrorManager'
+import { handleError } from '../Utils/ErrorManager';
 import type { IUser } from './Users';
-export type IdMongo = mongoose.Types.ObjectId
+
+export type IdMongo = mongoose.Types.ObjectId;
+
 interface LimitServices {
   day: number;
   max: number;
@@ -16,103 +18,71 @@ export interface Hairdresser {
   state: 'Disponible' | 'No disponible' | 'Vacaciones' | 'Feriado';
   limit_services: LimitServices[];
 }
+
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/hairdresser';
+
 export const getHairdresserByUserId = async (id: IdMongo) => {
   try {
-    const auth = getAuth();
-    const token = await auth.currentUser?.getIdToken();
-
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
 
     const response = await axios.get(
-      'http://localhost:8080/api/hairdresser',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      API_BASE,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
-    
-    const hairdressers = response.data?.hairdressers || [];
-    
-    // Filtrar por user_id que coincida con el id recibido
-    const hairdresser = hairdressers.find(
-      (hd: { user_id: IUser }) => hd.user_id._id  === id.toString() 
-    );
-    
-    return hairdresser ?? null;
 
+    const hairdressers = response.data?.hairdressers || [];
+    return (
+      hairdressers.find(
+        (hd: { user_id: IUser }) => hd.user_id._id === id.toString()
+      ) ?? null
+    );
   } catch (error) {
-    const errorhandler = handleError(error);
-    throw Error(errorhandler);
+    throw new Error(handleError(error));
   }
 };
-export const createHairdresser = async (hairdresserData : Hairdresser) => {
-  try {
-    const auth = getAuth(); // Obtener la instancia de autenticación de Firebase
-    const token = await auth.currentUser?.getIdToken(); // Obtener el token del usuario autenticado
 
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
+export const createHairdresser = async (hairdresserData: Hairdresser) => {
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
 
     const response = await axios.post(
-      'http://localhost:8080/api/hairdresser', 
-      hairdresserData, 
-      {
-        headers: {
-          Authorization: `Bearer ${token}` 
-        }
-      }
+      API_BASE,
+      hairdresserData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
-
     return response.data;
   } catch (error) {
-    const errorhandler = handleError(error);
-    console.error(error)
-    throw Error(errorhandler);
+    console.error(error);
+    throw new Error(handleError(error));
   }
 };
-export const updateHairdresser = async (id: IdMongo, hairdresserData : Partial<Hairdresser>) => {
-  try {
-    const auth = getAuth();
-    const token = await auth.currentUser?.getIdToken();
 
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
+export const updateHairdresser = async (
+  id: IdMongo,
+  hairdresserData: Partial<Hairdresser>
+) => {
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
 
     const response = await axios.put(
-      `http://localhost:8080/api/hairdresser/${id}`,
+      `${API_BASE}/${id}`,
       hairdresserData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      { headers: { Authorization: `Bearer ${token}` } }
     );
-    
-    
-    return response.data
-
+    return response.data;
   } catch (error) {
-    const errorhandler = handleError(error);
-    throw Error(errorhandler);
+    throw new Error(handleError(error));
   }
 };
+
 export const getHairdressers = async () => {
   try {
-    const response = await axios.get(
-      'http://localhost:8080/api/hairdresser');
-    
-    const hairdressers = response.data?.hairdressers || [];
-    
-    
-    return hairdressers
-
+    const response = await axios.get(API_BASE);
+    return response.data?.hairdressers || [];
   } catch (error) {
-    const errorhandler = handleError(error);
-    throw Error(errorhandler);
+    throw new Error(handleError(error));
   }
 };

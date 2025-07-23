@@ -1,85 +1,66 @@
 import axios from "axios";
-import {handleError} from '../Utils/ErrorManager'
+import { handleError } from '../Utils/ErrorManager';
 import { getAuth } from "firebase/auth";
 import { Dayjs } from "dayjs";
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 import type { IdMongo } from "./Hairdresser";
-export interface IService{
-    _id?: string | mongoose.Types.ObjectId,
-    name:  string,
-    price: number,
-    enabled:boolean,
-    duration: number,
-    description:string,
-    images_galery: string[],
-    discount?: string,
-    limit?: boolean,
-    deadline_time?:Dayjs
+
+export interface IService {
+  _id?: string | mongoose.Types.ObjectId;
+  name: string;
+  price: number;
+  enabled: boolean;
+  duration: number;
+  description: string;
+  images_galery: string[];
+  discount?: string;
+  limit?: boolean;
+  deadline_time?: Dayjs;
 }
 
-export const createService = async (appointmentData : unknown) => {
-  try {
-    const auth = getAuth(); // Obtener la instancia de autenticación de Firebase
-    const token = await auth.currentUser?.getIdToken(); // Obtener el token del usuario autenticado
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/service';
 
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
+export const createService = async (serviceData: unknown) => {
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
 
     const response = await axios.post(
-      'http://localhost:8080/api/service', 
-      appointmentData, 
-      {
-        headers: {
-          Authorization: `Bearer ${token}` // Agregar el token en la cabecera
-        }
-      }
+      API_BASE,
+      serviceData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
-  
     return response.data;
   } catch (error) {
-    const errorhandler = handleError(error);
-    console.error(error)
-    throw Error(errorhandler);
+    console.error(error);
+    throw new Error(handleError(error));
   }
 };
+
 export const getServices = async () => {
-    try {
+  try {
+    const response = await axios.get(API_BASE);
+    return response.data;
+  } catch (error) {
+    throw new Error(handleError(error));
+  }
+};
 
+export const updateService = async (
+  id: IdMongo,
+  serviceData: Partial<IService>
+) => {
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
 
-    const response = await axios.get(
-      'http://localhost:8080/api/service'
+    const response = await axios.put(
+      `${API_BASE}/${id}`,
+      serviceData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
     return response.data;
   } catch (error) {
-    const errorhandler = handleError(error);
-    throw Error(errorhandler);
-  }
-}
-export const updateService = async (id: IdMongo, hairdresserData : Partial<IService>) => {
-  try {
-    const auth = getAuth();
-    const token = await auth.currentUser?.getIdToken();
-
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
-
-    const response = await axios.put(
-      `http://localhost:8080/api/service/${id}`,
-      hairdresserData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    
-    
-    return response.data
-
-  } catch (error) {
-    const errorhandler = handleError(error);
-    throw Error(errorhandler);
+    throw new Error(handleError(error));
   }
 };

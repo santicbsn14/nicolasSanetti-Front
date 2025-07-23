@@ -2,6 +2,8 @@ import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 import {handleError} from '../Utils/ErrorManager'
 
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/clients';
+
 export const getClients= async () => {
   try {
     const auth = getAuth();
@@ -12,7 +14,7 @@ export const getClients= async () => {
     }
 
     const response = await axios.get(
-      'http://localhost:8080/api/clients',
+      API_BASE,
       {
         headers: {
           Authorization: `Bearer ${token}`,

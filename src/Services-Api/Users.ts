@@ -1,118 +1,96 @@
 import axios from "axios";
-import {handleError} from '../Utils/ErrorManager'
+import { handleError } from '../Utils/ErrorManager';
 import { getAuth } from "firebase/auth";
+
 export interface IUser  {
   firstname: string;
   lastname: string;
   email: string;
   age: number;
-  dni: number,
-  phone: number,
+  dni: number;
+  phone: number;
   role: {
     name: string;
-    permissions:string[],
+    permissions: string[];
   } | string;
   password: string;
-  confirmPassword?:string;
-  id?: string
-  _id?: string
-  status: boolean
+  confirmPassword?: string;
+  id?: string;
+  _id?: string;
+  status: boolean;
 }
 
-export const getUserByEmail = async (email: string) =>{
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api';
+
+export const getUserByEmail = async (email: string) => {
   try {
-    
-    const response = await axios.get('http://localhost:8080/api/users/email', {
-      params: {email} 
-    });
-
-    return response.data
+    const response = await axios.get(
+      `${API_BASE}/users/email`,
+      { params: { email } }
+    );
+    return response.data;
   } catch (error) {
-    console.error(error)
-    const errorhandler = handleError(error)
-    throw Error(errorhandler)
+    console.error(error);
+    throw new Error(handleError(error));
   }
-}
+};
+
 export const getUsers = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/users')
-      return response.data
-    } catch (error) {
-      const errorhandler = handleError(error)
-      throw Error(errorhandler)
-    }
-}
-export const createUser = async (userData:IUser) => {
   try {
-    const auth = getAuth(); 
-    const token = await auth.currentUser?.getIdToken(); 
-    
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
-    
-    const response = await axios.post('http://localhost:8080/api/session/signup', userData, 
-      {
-        headers: {
-          Authorization: `Bearer ${token}` // Agregar el token en la cabecera
-        },
-        withCredentials:true
-      })
-      
-    return response.data
-  } catch (error: unknown) {
-    const errorhandler = handleError(error)
-    throw Error(errorhandler)
-  }
-}
-export const updateUser = async (userid: string, userdata: Partial<IUser>) =>{
-  try {
-    const auth = getAuth(); 
-    const token = await auth.currentUser?.getIdToken(); 
-    
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
-    const response = await axios.put(`http://localhost:8080/api/users/${userid}`, userdata, 
-      {
-        headers: {
-          Authorization: `Bearer ${token}` // Agregar el token en la cabecera
-        }
-      })
-    return response.data
+    const response = await axios.get(`${API_BASE}/users`);
+    return response.data;
   } catch (error) {
-    const errorhandler = handleError(error)
-    throw Error(errorhandler)
+    throw new Error(handleError(error));
   }
-}
-export const deleteUserMongo = async (userid: string) =>{
-  try {
-    const auth = getAuth(); 
-    const token = await auth.currentUser?.getIdToken(); 
-    
-    if (!token) {
-      throw new Error('No authentication token available');
-    }
-    const response = await axios.delete(`http://localhost:8080/api/users/${userid}`, 
-      {
-        headers: {
-          Authorization: `Bearer ${token}` // Agregar el token en la cabecera
-        }
-      })
-    return response.data
-  } catch (error) {
-    const errorhandler = handleError(error)
-    throw Error(errorhandler)
-  }
-}
-// export const updatePasswordMongo = async(data: Partial<IUser>, userid:string)=>{
-//   try {
+};
 
-//     const response = await axios.put(`http://localhost:8080/api/session/${userid}`, data)
-//     console.log(response.data)
-//     return response.data
-//   } catch (error) {
-//     const errorhandler = handleError(error)
-//     throw Error(errorhandler)
-//   }
-// }
+export const createUser = async (userData: IUser) => {
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
+
+    const response = await axios.post(
+      `${API_BASE}/session/signup`,
+      userData,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(handleError(error));
+  }
+};
+
+export const updateUser = async (userid: string, userdata: Partial<IUser>) => {
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
+
+    const response = await axios.put(
+      `${API_BASE}/users/${userid}`,
+      userdata,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(handleError(error));
+  }
+};
+
+export const deleteUserMongo = async (userid: string) => {
+  try {
+    const token = await getAuth().currentUser?.getIdToken();
+    if (!token) throw new Error('No authentication token available');
+
+    const response = await axios.delete(
+      `${API_BASE}/users/${userid}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(handleError(error));
+  }
+};
