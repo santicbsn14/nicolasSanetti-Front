@@ -39,12 +39,15 @@ export const createService = async (serviceData: unknown) => {
 
 export const getServices = async () => {
   try {
-    const response = await axios.get(API_BASE);
+    const response = await axios.get(API_BASE, {
+      withCredentials: true,  // Esto asegura que las cookies se envíen con la solicitud
+    });
     return response.data;
   } catch (error) {
     throw new Error(handleError(error));
   }
 };
+
 
 export const updateService = async (
   id: IdMongo,
