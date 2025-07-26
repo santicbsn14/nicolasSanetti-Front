@@ -6,7 +6,11 @@ import './Navbar.css';
 const Navbar: FC = () => {
   const location = useLocation();
   const [navStyle, setNavStyle] = useState("");
-  
+    const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(prev => !prev);
+  };
   // Esta función determina el estilo de la navbar según la ruta actual
   useEffect(() => {
     // Determinar el estilo basado en la ruta
@@ -38,61 +42,39 @@ const Navbar: FC = () => {
         <h1 className="navbar__logo">NICOLAS SANETTI COIFFEUR</h1>
 
         <nav>
-          <ul className="navbar__menu">
+          <ul className={`navbar__menu ${menuOpen ? 'open' : ''}`}>
             <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive ? 'navbar__link active' : 'navbar__link'
-                }
-              >
+              <NavLink to="/" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 HOME
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/servicios"
-                className={({ isActive }) =>
-                  isActive ? 'navbar__link active' : 'navbar__link'
-                }
-              >
+              <NavLink to="/servicios" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 SERVICIOS
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/historia"
-                className={({ isActive }) =>
-                  isActive ? 'navbar__link active' : 'navbar__link'
-                }
-              >
+              <NavLink to="/historia" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 HISTORIA
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/contacto"
-                className={({ isActive }) =>
-                  isActive ? 'navbar__link active' : 'navbar__link'
-                }
-              >
+              <NavLink to="/contacto" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 CONTACTO
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/turnos"
-                target='_blank'
-                rel='noopener noreferrer'
-                className={({ isActive }) =>
-                  isActive ? 'navbar__link active' : 'navbar__link'
-                }
-              >
+              <NavLink to="/turnos" target="_blank" rel="noopener noreferrer" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 TURNOS
               </NavLink>
             </li>
           </ul>
         </nav>
+                <div className={`navbar__hamburger ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </header>
   );

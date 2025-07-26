@@ -11,14 +11,19 @@ const Home: React.FC = () => {
   return (
     <div className="font-sans text-gray-900">
       {/* Portada */}
-      <section className="" style={{
-        backgroundImage: `url(${portHome})`, height: '816px', backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        width:'100%'
-      }}>
-        {/* Dejá el espacio para que se cargue la imagen desde el estilo */}
-      </section>
+<section 
+  className="hero-section" 
+  style={{
+    backgroundImage: `url(${portHome})`
+  }}
+>
+  {/* Si después querés agregar contenido sobre la imagen, usá esta estructura:
+  <div className="hero-section__content">
+    <h1>Título</h1>
+    <p>Subtítulo</p>
+  </div>
+  */}
+</section>
 
       {/* Sección Color */}
       <ColorCarousel />

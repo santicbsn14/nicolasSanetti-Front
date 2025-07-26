@@ -123,4 +123,170 @@
     color: #333;
     text-align: justify;
   }
+  /* Hero Section - Imagen de fondo responsive */
+.hero-section {
+  width: 100%;
+  height: 100vh; /* Usa toda la altura de la ventana */
+  min-height: 600px; /* Altura mínima para pantallas muy pequeñas */
+  max-height: 816px; /* Tu altura original como máximo */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Efecto parallax opcional */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Para tablets */
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 70vh;
+    min-height: 500px;
+    max-height: 700px;
+    background-attachment: scroll; /* Mejor performance en tablets */
+  }
+}
+
+/* Para móviles grandes */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh;
+    min-height: 400px;
+    max-height: 600px;
+    background-position: center center;
+  }
+}
+
+/* Para móviles pequeños */
+@media (max-width: 480px) {
+  .hero-section {
+    height: 50vh;
+    min-height: 350px;
+    max-height: 500px;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .hero-section {
+    height: 45vh;
+    min-height: 300px;
+  }
+}
+
+/* Si querés agregar contenido sobre la imagen después */
+.hero-section__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+/* Overlay opcional para mejorar la legibilidad del texto */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* Overlay sutil */
+  z-index: 1;
+  display: none; /* Oculto por defecto, activalo si necesitas */
+}
+/* Agregá estos media queries al final de tu CSS existente */
+
+/* Fixes para evitar scroll horizontal - SOLO anchos */
+
+/* Tablets grandes */
+@media (max-width: 1200px) {
+  .nicolas-container {
+    max-width: 95%; /* En lugar de 1200px fijo */
+    padding: 0 20px; /* Reducir padding lateral */
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .nicolas-container {
+    gap: 40px; /* Reducir gap de 60px a 40px */
+    padding: 0 20px;
+  }
   
+  .nicolas-image {
+    width: 400px; /* Reducir de 500px */
+    height: 530px; /* Mantener proporción */
+    max-width: 45%; /* Asegurar que no se desborde */
+  }
+  
+  .nicolas-text {
+    width: auto; /* Cambiar de 464px fijo a auto */
+    max-width: 50%; /* Limitar ancho máximo */
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .nicolas-container {
+    flex-direction: column; /* Cambiar a columna */
+    align-items: center;
+    gap: 30px;
+    padding: 0 15px;
+  }
+  
+  .nicolas-image {
+    width: 100%;
+    max-width: 400px; /* Limitar ancho máximo */
+    height: auto; /* Altura automática para mantener proporción */
+  }
+  
+  .nicolas-text {
+    width: 100%;
+    max-width: 600px; /* Limitar ancho máximo */
+    margin-top: 0; /* Remover margin-top en mobile */
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .virtudes-section {
+    padding: 60px 15px; /* Reducir padding lateral */
+  }
+  
+  .nicolas-section {
+    padding: 60px 0; /* Reducir padding vertical */
+  }
+  
+  .nicolas-container {
+    padding: 0 10px;
+  }
+  
+  .nicolas-text h2,
+  .nicolas-text h3 {
+    font-size: 24px; /* Reducir ligeramente el font-size */
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .virtudes-section {
+    padding: 50px 10px;
+  }
+  
+  .nicolas-container {
+    padding: 0 5px;
+  }
+  
+  .nicolas-text h2,
+  .nicolas-text h3 {
+    font-size: 22px;
+  }
+  
+  .nicolas-text p {
+    font-size: 15px;
+    line-height: 26px;
+  }
+}

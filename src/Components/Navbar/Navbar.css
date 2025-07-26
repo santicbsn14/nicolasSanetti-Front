@@ -1,68 +1,201 @@
+/* Barra de navegación */
 .navbar {
-    transition: background-color 0.3s ease;
-  }.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: transparent; /* Cambiamos a transparente */
-    z-index: 50;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 50;
+  transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+/* Contenedor de la barra */
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1512px;
+  margin: 0 auto;
+  position: relative; /* Importante para el posicionamiento del hamburger */
+}
+
+/* Logo */
+.navbar__logo {
+  color: #131313;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 6%;
+  text-transform: uppercase;
+  padding: 0;
+  transition: color 0.3s ease;
+  /* Removí flex-grow para evitar problemas de espacio */
+}
+
+/* Menú de navegación */
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 25px;
+  align-items: center;
+}
+
+/* Elementos del menú */
+.navbar__menu li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__menu li:not(:last-child)::after {
+  content: "-";
+  margin: 0 8px;
+  color: #131313;
+}
+
+/* Enlaces del menú */
+.navbar__link {
+  text-decoration: none;
+  color: #131313;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 2px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover y estado activo del enlace */
+.navbar__link:hover {
+  color: #007bff;
+  transform: scale(1.05);
+}
+
+.navbar__link.active {
+  border-bottom: 2px solid #007bff;
+}
+
+/* Botón hamburguesa - oculto por defecto */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 100;
+  position: relative; /* Cambié de absolute a relative */
+}
+
+.navbar__hamburger div {
+  width: 30px;
+  height: 3px;
+  background-color: #131313;
+  transition: 0.3s ease;
+  position: relative; /* Necesario para las animaciones */
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Eliminar el scroll horizontal */
+  body {
+    overflow-x: hidden;
   }
-  
+
+  /* Ajustar padding del navbar en mobile */
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  /* Contenedor ajustado para mobile */
   .navbar__container {
-    color: #131313;
-    max-width: 1512px;
-    height: 83px;
-    padding: 0 20px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* El justify-content: space-between ya maneja la distribución */
   }
-  
+
+  /* Ajustar el logo en pantallas pequeñas */
   .navbar__logo {
-    opacity: 100%;
-    color: #131313;
-    font-size: 26px;
-    line-height: auto;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 6%;
-    padding: 5px 0;
+    font-size: 18px; /* Reducido para que quepa mejor */
+    padding: 10px 0;
+    /* Limitar el ancho del logo para evitar overflow */
+    max-width: calc(100vw - 120px); /* Deja espacio para padding y hamburger */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  
+
+  /* Mostrar el botón hamburguesa */
+  .navbar__hamburger {
+    display: flex;
+    flex-shrink: 0; /* Evita que se comprima */
+  }
+
+  /* Menu oculto por defecto en pantallas pequeñas */
   .navbar__menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Cambiado de 60px a 100% para que se posicione relativo al navbar */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-top: 2px solid #131313;
+    box-sizing: border-box;
+    z-index: 99;
+  }
+
+  .navbar__menu.open {
     display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    align-items: center;
   }
-  
-  .navbar__menu li {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar__menu li:not(:last-child)::after {
-    content: "-";
-    margin: 0 8px;
-    color: #131313;
-  }
-  
+
+  /* Ajustar el tamaño de los enlaces en pantallas pequeñas */
   .navbar__link {
-    text-decoration: none;
-    color: #131313;
-    text-transform: uppercase;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navbar__menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Remover los separadores en mobile */
+  .navbar__menu li:not(:last-child)::after {
+    display: none;
+  }
+}
+
+/* Animación del hamburger */
+@media (max-width: 768px) {
+  .navbar__hamburger.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .navbar__hamburger.open div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar__hamburger.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
+
+/* Para pantallas extra pequeñas */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 10px;
+  }
+
+  .navbar__logo {
     font-size: 16px;
-    font-weight: 500;
-    padding-bottom: 2px;
+    max-width: calc(100vw - 100px);
   }
-  
-  .navbar__link:hover {
-    opacity: 0.7;
+
+  .navbar__hamburger div {
+    width: 25px;
   }
-  
-  .navbar__link.active {
-    border-bottom: 2px solid #131313;
-  }
+}

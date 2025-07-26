@@ -44,6 +44,7 @@ export const getServices = async () => {
     });
     return response.data;
   } catch (error) {
+    console.log(error)
     throw new Error(handleError(error));
   }
 };
