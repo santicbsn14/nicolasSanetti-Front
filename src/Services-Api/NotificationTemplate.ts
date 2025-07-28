@@ -11,7 +11,7 @@ export interface NotificationTemplate {
   updatedAt?: Dayjs;
 }
 
-const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/notificationTemplate';
+const API_BASE = 'https://nicolas-sanetti-system-misc.onrender.com/api/notificationTemplate';
 
 export const getNotificationTemplate = async () => {
   try {

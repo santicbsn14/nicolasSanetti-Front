@@ -4,7 +4,7 @@ import { handleError } from '../Utils/ErrorManager';
 import { getAuth } from 'firebase/auth';
 import type { IdMongo } from './Hairdresser';
 
-const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/appointments';
+const API_BASE = 'https://nicolas-sanetti-system-misc.onrender.com/api/appointments';
 
 export const makeAppointment = async (appointmentData: Appointment) => {
   try {
