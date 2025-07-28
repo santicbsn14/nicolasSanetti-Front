@@ -5,13 +5,21 @@ interface Props {
   categorias: string[]
   categoriaSeleccionada: string
   onCategoriaSelect: (categoria: string) => void
+  onBusquedaChange: (texto: string) => void
 }
 
-const SidebarFiltros: FC<Props> = ({ categorias, onCategoriaSelect, categoriaSeleccionada }) => {
+
+const SidebarFiltros: FC<Props> = ({ categorias, onCategoriaSelect, categoriaSeleccionada, onBusquedaChange }) => {
   return (
     <aside className="sidebar">
       <label className="sidebar__label">Buscar servicio</label>
-      <input type="text" className="sidebar__buscador" placeholder="Buscar..." />
+      <input
+  type="text"
+  className="sidebar__buscador"
+  placeholder="Buscar..."
+  onChange={(e) => onBusquedaChange(e.target.value)}
+/>
+
 
       <div className="sidebar__categorias">
         {categorias.map((categoria) => (

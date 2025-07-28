@@ -28,6 +28,7 @@ const Turnos: FC = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [serviciosAgrupados, setServiciosAgrupados] = useState<Record<string, ServicioCardData[]>>({})
+    const [busqueda, setBusqueda] = useState('');
 
     // Función para categorizar servicios
     const categorizarServicio = (nombreServicio: string): string => {
@@ -173,19 +174,24 @@ const Turnos: FC = () => {
             <TurnosHeader/>
             <div className="turnos-divider-horizontal" />
             <div className="turnos__contenedor">
-                <SidebarFiltros
-                    categorias={Object.keys(serviciosAgrupados)}
-                    onCategoriaSelect={setCategoriaSeleccionada}
-                    categoriaSeleccionada={categoriaSeleccionada}
-                />
+<SidebarFiltros
+  categorias={Object.keys(serviciosAgrupados)}
+  onCategoriaSelect={setCategoriaSeleccionada}
+  categoriaSeleccionada={categoriaSeleccionada}
+  onBusquedaChange={setBusqueda}
+/>
 
                 <div className="turnos__contenido">
                     <h2 className="turnos__titulo">{categoriaSeleccionada}</h2>
                     <div className="turnos__linea-horizontal" />
                     <div className="turnos__cards">
-                        {serviciosAgrupados[categoriaSeleccionada]?.map((servicio, i) => (
-                            <ServicioCard key={i} {...servicio} />
-                        ))}
+{serviciosAgrupados[categoriaSeleccionada]
+  ?.filter((servicio) =>
+    servicio.titulo.toLowerCase().includes(busqueda.toLowerCase())
+  )
+  .map((servicio, i) => (
+    <ServicioCard key={i} {...servicio} />
+))}
                     </div>
                 </div>
             </div>
