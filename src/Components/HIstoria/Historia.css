@@ -139,3 +139,53 @@
       font-size: 32px;
     }
   }
+  @media screen and (max-width: 768px) {
+  .titulo-overlay {
+    font-size: 2.4rem;
+    text-align: center;
+    padding: 0 12px;
+    white-space: normal;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .port-historia-img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  .mosaico-precios {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .historia-contenido {
+    padding: 32px 16px;
+  }
+
+  .historia-imagen {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .historia-texto {
+    width: 100%;
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .historia-titulo {
+    font-size: 20px;
+    text-align: center;
+  }
+}
