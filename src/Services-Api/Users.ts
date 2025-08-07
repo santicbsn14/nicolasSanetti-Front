@@ -20,7 +20,7 @@ export interface IUser  {
   status: boolean;
 }
 
-const API_BASE = 'https://nicolas-sanetti-system-misc.onrender.com/api';
+const API_BASE = 'http://localhost:8080/api';
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -59,7 +59,6 @@ export const createUser = async (userData: IUser) => {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
     throw new Error(handleError(error));
   }
 };

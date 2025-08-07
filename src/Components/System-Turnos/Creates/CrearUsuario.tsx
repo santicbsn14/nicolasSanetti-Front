@@ -52,7 +52,6 @@ const CreateUserForm: React.FC = () => {
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Error al cargar los roles';
         toast.error(errorMessage);
-        console.error('Error loading roles:', error);
       } finally {
         setLoadingRoles(false);
       }
@@ -60,7 +59,6 @@ const CreateUserForm: React.FC = () => {
 
     fetchRoles();
   }, []);
-console.log(roles)
   const handleInputChange = (field: keyof UserFormData, value: string | number) => {
     setFormData(prev => ({
       ...prev,
@@ -116,6 +114,7 @@ console.log(roles)
       setTimeout(() => setShowSuccessMessage(false), 3000);
       
       // Reset form
+      toast.success('Se ha creado el usuario con exito')
       setFormData({
         firstname: '',
         lastname: '',
