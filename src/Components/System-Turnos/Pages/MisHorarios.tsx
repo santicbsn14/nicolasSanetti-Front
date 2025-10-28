@@ -63,8 +63,6 @@ const MisHorarios: React.FC = () => {
   const { mongoUser } = useAuth();
 
   const daysOfWeek: DayOfWeek[] = [
-    { id: 0, name: 'Domingo', short: 'Dom' },
-    { id: 1, name: 'Lunes', short: 'Lun' },
     { id: 2, name: 'Martes', short: 'Mar' },
     { id: 3, name: 'Miércoles', short: 'Mié' },
     { id: 4, name: 'Jueves', short: 'Jue' },
@@ -128,11 +126,11 @@ const MisHorarios: React.FC = () => {
         if (!mongoUser?._id) throw new Error('Usuario no autenticado');
 
         const hairdresser: Hairdresser = await getHairdresserByUserId(mongoUser._id as unknown as IdMongo);
-
+        
         const currentHairdresserId: string | undefined = hairdresser?._id;
-
+        console.log(currentHairdresserId)
         if (!currentHairdresserId) throw new Error('No se encontró un hairdresser para este usuario');
-
+        
         setHairdresserId(currentHairdresserId);
 
         // 2. Intentar obtener los horarios usando ese ID
@@ -237,7 +235,7 @@ const MisHorarios: React.FC = () => {
   const handleSave = async (): Promise<void> => {
     try {
       setSaving(true);
-
+console.log(hairdresserId)
       if (!hairdresserId) {
         throw new Error('ID del peluquero no disponible');
       }

@@ -56,7 +56,7 @@ const SeleccionarProfesional: React.FC = () => {
       setLoading(true);
       setError(null);
 
-       const data: Hairdresser[] = await getHairdressers();
+      const data: Hairdresser[] = await getHairdressers();
       const available = data.filter(h => h.state === "Disponible");
       const list = available.map(transformHairdresser);
       setProfessionals(list);

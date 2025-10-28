@@ -30,13 +30,13 @@ export const getHairdresserByUserId = async (id: IdMongo) => {
       API_BASE,
       { headers: { Authorization: `Bearer ${token}` } }
     );
-
+    
     const hairdressers = response.data?.hairdressers || [];
-    return (
-      hairdressers.find(
-        (hd: { user_id: IUser }) => hd.user_id._id === id.toString()
-      ) ?? null
-    );
+const found = hairdressers.find(
+  (hd :{user_id: IUser}) => hd.user_id?._id === id.toString()
+);
+
+return found ?? null;
   } catch (error) {
     throw new Error(handleError(error));
   }

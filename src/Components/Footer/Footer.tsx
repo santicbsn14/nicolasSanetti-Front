@@ -10,9 +10,6 @@ const Footer: FC = () => {
       <div className="footer-container">
         <div className="footer-brand">
           <h2>NICOLAS SANETTI COIFFEUR</h2>
-          <p>
-            Experiencia en corte de cabellos de los mejor que vas a poder encontrar en San Nicolás
-          </p>
         </div>
 
         <div className="footer-column">

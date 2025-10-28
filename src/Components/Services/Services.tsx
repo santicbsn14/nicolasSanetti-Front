@@ -2,7 +2,7 @@ import type {FC} from 'react'
 import port from '../Imagenes/port-services-port_.webp'
 import primerService from '../Imagenes/primerService_.webp'
 import segundoService from '../Imagenes/ServicioDos_.webp'
-import tercerService from '../Imagenes/servicioTres_.webp'
+import tercerService from '../Imagenes/colorYMechas.webp'
 import './Services.css'
 
 const Services : FC = () =>{
@@ -23,7 +23,7 @@ const Services : FC = () =>{
         {
             titulo: 'CORTE Y BARBERÍA',
             descripcion:
-              'Más que un corte, es un momento de renovación. Con nuestro servicio premium, disfrutas de toallas calientes, masajes faciales y productos de calidad. Luego, creamos tu estilo ideal: cortes clásicos, degradados, perfilado de barba o afeitado, para que tu imagen refleje tu personalidad y te haga sentir impecable.',
+              'Es un momento de renovación. Con nuestro servicio premium, disfrutas de productos de calidad. Luego, creamos tu estilo ideal: cortes clásicos, degradados, perfilado de barba o afeitado, para que tu imagen refleje tu personalidad y te haga sentir impecable.',
             imagen: segundoService,
             precios: [
               { nombre: 'LAVADO Y CORTE FEMENINO', valor: '15.000' },
