@@ -1,8 +1,9 @@
 import type {FC} from 'react'
 import port from '../Imagenes/port-services-port_.webp'
-import primerService from '../Imagenes/primerService_.webp'
+// import primerService from '../Imagenes/primerService_.webp'
 import segundoService from '../Imagenes/ServicioDos_.webp'
 import tercerService from '../Imagenes/colorYMechas.webp'
+import video from '../Imagenes/Lavado.mp4'
 import './Services.css'
 
 const Services : FC = () =>{
@@ -12,7 +13,8 @@ const Services : FC = () =>{
           titulo: 'LAVADO Y PEINADO',
           descripcion:
             'Más que un servicio, es un momento de relax y bienestar. Con nuestro lavacabezas premium a 180°, disfrutas de un masaje capilar revitalizante, acompañado de productos de alta calidad que nutren y protegen tu cabello. Te invitamos a desconectar y disfrutar de una experiencia única. Luego, nuestro equipo de expertos crea el peinado ideal para ti: desde un brushing perfecto hasta ondas suaves, un alisado impecable o un recogido elegante. Todo pensado para que tu look refleje tu estilo, realce tu belleza y te haga sentir radiante en cualquier ocasión.',
-          imagen: primerService,
+          media: video, // Cambiamos 'imagen' por 'media'
+          mediaType: 'video', // Agregamos el tipo: 'image' o 'video'
           precios: [
             { nombre: 'LAVADO Y BRUSHING', valor: '10.000' },
             { nombre: 'PEINADOS', valor: '20.000', desde: true },
@@ -24,7 +26,8 @@ const Services : FC = () =>{
             titulo: 'CORTE Y BARBERÍA',
             descripcion:
               'Es un momento de renovación. Con nuestro servicio premium, disfrutas de productos de calidad. Luego, creamos tu estilo ideal: cortes clásicos, degradados, perfilado de barba o afeitado, para que tu imagen refleje tu personalidad y te haga sentir impecable.',
-            imagen: segundoService,
+            media: segundoService,
+            mediaType: 'image',
             precios: [
               { nombre: 'LAVADO Y CORTE FEMENINO', valor: '15.000' },
               { nombre: 'LAVADO Y CORTE MASCULINO', valor: '15.000' },
@@ -37,7 +40,8 @@ const Services : FC = () =>{
             titulo: 'COLORACIÓN Y MECHAS',
             descripcion:
               'Más que un color, es una transformación. Con nuestra coloración premium, cuidamos tu cabello con productos de calidad y técnicas personalizadas. Disfruta de un servicio cómodo y relajante mientras creamos el tono ideal: balayage, babylights, reflejos o coloración completa, para que tu look resalte y te haga sentir única.',
-            imagen: tercerService,
+            media: tercerService,
+            mediaType: 'image',
             precios: [
               { nombre: 'COLOR', valor: '28.000', desde: true },
               { nombre: 'REFLEJOS', valor: '50.000', desde: true },
@@ -48,8 +52,8 @@ const Services : FC = () =>{
             bgColor:'white',
             reverse: false
           },
-        // Podés seguir agregando más objetos de este tipo
       ];
+    
     return (
         <section className='services'>
             <div className='port-services'>
@@ -66,7 +70,24 @@ const Services : FC = () =>{
         <div key={index} className="servicio" style={{ backgroundColor: servicio.bgColor }}>
             <div className={`servicio-content ${servicio.reverse ? "reverse" : ""}`}>
           <div className="servicio-imagen">
-            <img src={servicio.imagen} alt={servicio.titulo} />
+            {servicio.mediaType === 'video' ? (
+              <video 
+                className="servicio-media"
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+              >
+                <source src={servicio.media} type="video/mp4" />
+                Tu navegador no soporta videos HTML5.
+              </video>
+            ) : (
+              <img 
+                src={servicio.media} 
+                alt={servicio.titulo}
+                className="servicio-media" 
+              />
+            )}
           </div>
           <div className="servicio-texto">
             <h2>{servicio.titulo}</h2>

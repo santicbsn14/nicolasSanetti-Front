@@ -10,7 +10,7 @@ const Contacto: React.FC = () => {
 
         <div className="contacto-info">
           <ul>
-            <li><span>📍</span> Dirección: Av. Siempreviva 742, Rosario, Santa Fe</li>
+            <li><span>📍</span> Dirección: Colón 153, San Nicolas, Buenos Aires</li>
             <li><span>📞</span> Teléfono: (341) 123-4567</li>
             <li><span>🕒</span> Horario: Lunes a Viernes de 9 a 20 hs / Sábados de 9 a 15 hs</li>
             <li>
