@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 import {handleError} from '../Utils/ErrorManager'
 
-const API_BASE = 'https://nicolas-sanetti-system-misc.onrender.com/api/clients';
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/clients';
 
 export const getClients= async () => {
   try {

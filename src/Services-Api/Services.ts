@@ -18,7 +18,7 @@ export interface IService {
   deadline_time?: Dayjs;
 }
 
-const API_BASE = 'https://nicolas-sanetti-system-misc.onrender.com/api/service';
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/service';
 
 export const createService = async (serviceData: unknown) => {
   try {

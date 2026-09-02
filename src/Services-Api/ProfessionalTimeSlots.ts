@@ -20,8 +20,8 @@ export interface ProfessionalTimeSlots {
   schedule: DaySchedule[];
 }
 
-const DAILY_API_BASE = 'https://nicolas-sanetti-system-misc.onrender.com/api/dailyHourAvailability';
-const PRO_API_BASE   = 'https://nicolas-sanetti-system-misc.onrender.com/api/professionalTimeSlots';
+const DAILY_API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/dailyHourAvailability';
+const PRO_API_BASE   = 'https://nicolas-sanetti-system.onrender.com/api/professionalTimeSlots';
 
 export const createDailyHourAvailability = async (dailyData: unknown) => {
   try {

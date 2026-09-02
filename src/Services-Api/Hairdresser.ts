@@ -19,7 +19,7 @@ export interface Hairdresser {
   limit_services: LimitServices[];
 }
 
-const API_BASE = 'https://nicolas-sanetti-system-misc.onrender.com/api/hairdresser';
+const API_BASE = 'https://nicolas-sanetti-system.onrender.com/api/hairdresser';
 
 export const getHairdresserByUserId = async (id: IdMongo) => {
   try {
