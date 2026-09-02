@@ -28,7 +28,7 @@ interface Precio {
             <ul>
               {precios.map((item, index) => (
                 <li key={index}>
-                  <strong>{item.nombre}</strong>: {item.precio}
+                  <strong>{item.nombre}</strong>: 'A consultar...'
                 </li>
               ))}
             </ul>

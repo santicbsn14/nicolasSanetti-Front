@@ -25,7 +25,7 @@ const Footer: FC = () => {
         <div className="footer-column">
           <h3>Contacto</h3>
           <ul>
-            <li>+54 9 336 430-8505</li>
+            <li>+54 9 336 461-4298</li>
             <li>
               <a
                 href="https://maps.app.goo.gl/F4AXqCMSaPpFeBdz9"

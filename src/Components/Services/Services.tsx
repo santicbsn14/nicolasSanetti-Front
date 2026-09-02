@@ -97,8 +97,7 @@ const Services : FC = () =>{
                 <div key={i} className="precio-item">
                   <span className="precio-nombre">{precio.nombre}</span>
                   <span className="precio-valor">
-                    {precio.desde ? 'Desde ' : ''}
-                    {precio.valor}
+                    A consultar...
                   </span>
                 </div>
               ))}

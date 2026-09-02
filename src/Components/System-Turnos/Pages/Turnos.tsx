@@ -112,11 +112,11 @@ const Turnos: FC = () => {
                 <div className="turnos-topbar">
                     <div className="turnos-topbar__location">
                         <FontAwesomeIcon icon={faLocationDot} />
-                        <span>Av. San Nicolás 2323</span>
+                        <span>Colón 153, San Nicolás de Los Arroyos</span>
                     </div>
                     <div className="turnos-topbar__whatsapp">
                         <FontAwesomeIcon icon={faWhatsapp} />
-                        <span>+54 9 458 9282</span>
+                        <span>+54 9 3364 614298</span>
                     </div>
                 </div>
                 <TurnosHeader />
@@ -137,11 +137,11 @@ const Turnos: FC = () => {
                 <div className="turnos-topbar">
                     <div className="turnos-topbar__location">
                         <FontAwesomeIcon icon={faLocationDot} />
-                        <span>Av. San Nicolás 2323</span>
+                        <span>Colón 153, San Nicolás de Los Arroyos</span>
                     </div>
                     <div className="turnos-topbar__whatsapp">
                         <FontAwesomeIcon icon={faWhatsapp} />
-                        <span>+54 9 458 9282</span>
+                        <span>+54 9 3364 614298</span>
                     </div>
                 </div>
                 <TurnosHeader />
