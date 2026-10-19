@@ -1,6 +1,7 @@
 import type {FC} from 'react'
 import {  useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { buildWaLink, MENSAJE_TURNO } from '../../features/whatsapp/whatsapp';
 import './Navbar.css';
 
 const Navbar: FC = () => {
@@ -26,9 +27,6 @@ const Navbar: FC = () => {
         break;
       case '/contacto':
         setNavStyle("navbar--contacto");
-        break;
-      case '/turnos':
-        setNavStyle("navbar--turnos");
         break;
       default:
         setNavStyle("");
@@ -64,9 +62,15 @@ const Navbar: FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/turnos" target="_blank" rel="noopener noreferrer" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
-                TURNOS
-              </NavLink>
+              <a
+                href={buildWaLink(MENSAJE_TURNO)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="navbar__link"
+                onClick={() => setMenuOpen(false)}
+              >
+                RESERVÁ TU TURNO
+              </a>
             </li>
           </ul>
         </nav>

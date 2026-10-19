@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { buildWaLink, MENSAJE_TURNO } from '../../features/whatsapp/whatsapp';
 import './Contacto.css';
 
 const Contacto: React.FC = () => {
@@ -25,18 +25,23 @@ const Contacto: React.FC = () => {
           Si tenés alguna consulta o querés saber más sobre nuestros servicios, no dudes en escribirnos. Estamos para ayudarte.
         </p>
         <p className="contacto-text">
-          Podés encontrarnos en nuestras redes sociales o completar el formulario. ¡Te responderemos lo antes posible!
+          Podés encontrarnos en nuestras redes sociales. ¡Te responderemos lo antes posible!
         </p>
       </section>
 
       <section className="cta-turnos">
         <h2 className="cta-title">¿Querés reservar tu turno?</h2>
         <p className="cta-text">
-          Agendá tu cita online de forma rápida y simple, y viví la experiencia Sanetti.
+          Escribinos por WhatsApp y coordinamos tu turno.
         </p>
-        <Link to="/turnos" className="cta-link">
-          Ir a turnos
-        </Link>
+        <a
+          href={buildWaLink(MENSAJE_TURNO)}
+          className="cta-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Reservá por WhatsApp
+        </a>
       </section>
     </div>
   );

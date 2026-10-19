@@ -64,4 +64,9 @@
     color: #fff;
     cursor: pointer;
   }
+
+  .footer-social a,
+  .footer-contact-link {
+    color: #fff;
+  }
   
