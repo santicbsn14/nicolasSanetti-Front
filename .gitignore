@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Material original del fotógrafo (no se sube al repo)
+material-nico/
