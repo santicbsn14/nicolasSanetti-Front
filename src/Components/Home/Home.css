@@ -129,12 +129,18 @@
   height: 100vh; /* Usa toda la altura de la ventana */
   min-height: 600px; /* Altura mínima para pantallas muy pequeñas */
   max-height: 816px; /* Tu altura original como máximo */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Efecto parallax opcional */
   position: relative;
   overflow: hidden;
+  background: #000;
+}
+
+.hero-section__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Para tablets */
@@ -143,7 +149,6 @@
     height: 70vh;
     min-height: 500px;
     max-height: 700px;
-    background-attachment: scroll; /* Mejor performance en tablets */
   }
 }
 
@@ -153,7 +158,6 @@
     height: 60vh;
     min-height: 400px;
     max-height: 600px;
-    background-position: center center;
   }
 }
 
@@ -185,17 +189,18 @@
   z-index: 10;
 }
 
-/* Overlay opcional para mejorar la legibilidad del texto */
+/* Degradado arriba del hero para que la navbar transparente se lea sobre el video.
+   Es claro porque el texto de la navbar es oscuro (#131313): uno oscuro lo tapaba en los planos oscuros. */
 .hero-section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3); /* Overlay sutil */
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
   z-index: 1;
-  display: none; /* Oculto por defecto, activalo si necesitas */
+  pointer-events: none;
 }
 /* Agregá estos media queries al final de tu CSS existente */
 

@@ -1,5 +1,12 @@
-import React from 'react';
-import portHome from '../Imagenes/port-NicoSanetti-.webp';
+import React, { useEffect, useRef, useState } from 'react';
+import heroEspaciosDesktop from '../Videos/hero-espacios-desktop.mp4';
+import heroEspaciosDesktopPoster from '../Videos/hero-espacios-desktop.webp';
+import heroEspaciosMobile from '../Videos/hero-espacios-mobile.mp4';
+import heroEspaciosMobilePoster from '../Videos/hero-espacios-mobile.webp';
+import heroSillonDesktop from '../Videos/hero-sillon-desktop.mp4';
+import heroSillonDesktopPoster from '../Videos/hero-sillon-desktop.webp';
+import heroSillonMobile from '../Videos/hero-sillon-mobile.mp4';
+import heroSillonMobilePoster from '../Videos/hero-sillon-mobile.webp';
 import ColorCarousel from './CarrouselServices';
 import estrellitas from '../Imagenes/estrellitas.png';
 import spa from '../Imagenes/spa-y-relax.png';
@@ -7,22 +14,56 @@ import infinito from '../Imagenes/infinito.png';
 import librito from '../Imagenes/librito.png';
 import fotoNicolas from '../Imagenes/fotoNicolas_.webp'
 import './Home.css'
+// TEMPORAL: comparar opciones de hero con Nico. Cuando elija, dejar una sola y borrar la otra.
+const HERO_VIDEOS = {
+  espacios: {
+    desktop: { src: heroEspaciosDesktop, poster: heroEspaciosDesktopPoster },
+    mobile: { src: heroEspaciosMobile, poster: heroEspaciosMobilePoster },
+  },
+  sillon: {
+    desktop: { src: heroSillonDesktop, poster: heroSillonDesktopPoster },
+    mobile: { src: heroSillonMobile, poster: heroSillonMobilePoster },
+  },
+};
+
+// Se decide una sola vez al montar: no cambia si se redimensiona la ventana.
+const elegirHero = () => {
+  const opcion = new URLSearchParams(window.location.search).get('hero') === 'sillon' ? 'sillon' : 'espacios';
+  const formato = window.matchMedia('(orientation: landscape) and (min-width: 769px)').matches ? 'desktop' : 'mobile';
+  return {
+    ...HERO_VIDEOS[opcion][formato],
+    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  };
+};
+
 const Home: React.FC = () => {
+  const [hero] = useState(elegirHero);
+  const heroRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = heroRef.current;
+    if (!video || hero.reducedMotion) return;
+    // React no siempre deja el atributo muted en el DOM y sin él iOS no hace autoplay
+    video.muted = true;
+    video.play().catch(() => {});
+  }, [hero]);
+
   return (
     <div className="font-sans text-gray-900">
       {/* Portada */}
-<section 
-  className="hero-section" 
-  style={{
-    backgroundImage: `url(${portHome})`
-  }}
->
-  {/* Si después querés agregar contenido sobre la imagen, usá esta estructura:
-  <div className="hero-section__content">
-    <h1>Título</h1>
-    <p>Subtítulo</p>
-  </div>
-  */}
+<section className="hero-section">
+  <video
+    ref={heroRef}
+    className="hero-section__video"
+    src={hero.src}
+    poster={hero.poster}
+    autoPlay={!hero.reducedMotion}
+    preload={hero.reducedMotion ? 'none' : 'auto'}
+    muted
+    loop
+    playsInline
+    aria-hidden="true"
+  />
 </section>
 
       {/* Sección Color */}

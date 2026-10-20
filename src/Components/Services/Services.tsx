@@ -3,7 +3,9 @@ import port from '../Imagenes/port-services-port_.webp'
 // import primerService from '../Imagenes/primerService_.webp'
 import segundoService from '../Imagenes/ServicioDos_.webp'
 import tercerService from '../Imagenes/colorYMechas.webp'
-import video from '../Imagenes/Lavado.mp4'
+import video from '../Videos/servicio-lavado.mp4'
+import videoPoster from '../Videos/servicio-lavado.webp'
+import VideoLazy from '../Videos/VideoLazy'
 import './Services.css'
 
 const Services : FC = () =>{
@@ -71,16 +73,11 @@ const Services : FC = () =>{
             <div className={`servicio-content ${servicio.reverse ? "reverse" : ""}`}>
           <div className="servicio-imagen">
             {servicio.mediaType === 'video' ? (
-              <video 
+              <VideoLazy
+                src={servicio.media}
+                poster={videoPoster}
                 className="servicio-media"
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-              >
-                <source src={servicio.media} type="video/mp4" />
-                Tu navegador no soporta videos HTML5.
-              </video>
+              />
             ) : (
               <img 
                 src={servicio.media} 
