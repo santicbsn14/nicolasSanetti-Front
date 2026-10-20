@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import itemUno from '../Imagenes/itemUno_converted.webp';
 import itemDos from '../Imagenes/itemDos_converted.webp';
-import itemTres from '../Imagenes/rectangulo.png';
+import itemTres from '../Imagenes/rectangulo.webp';
 import itemCuatro from '../Imagenes/itemCuatro_converted.webp'
-import itemCinco from '../Imagenes/Rectangle 18.png'
+import itemCinco from '../Imagenes/rectangle-18.webp'
 import './CarrouselServices.css';
 
 type Slide = {

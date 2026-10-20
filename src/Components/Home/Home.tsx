@@ -70,6 +70,8 @@ const Home: React.FC = () => {
           src={fotoNicolas}
           alt="Nicolas Sanetti working"
           className="nicolas-image"
+          loading="lazy"
+          decoding="async"
         />
         <div className="nicolas-text">
           <h2>NICOLAS SANETTI COIFFEUR</h2>

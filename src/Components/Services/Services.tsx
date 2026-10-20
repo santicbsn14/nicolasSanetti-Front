@@ -85,7 +85,9 @@ const Services : FC = () =>{
               <img 
                 src={servicio.media} 
                 alt={servicio.titulo}
-                className="servicio-media" 
+                className="servicio-media"
+                loading="lazy"
+                decoding="async"
               />
             )}
           </div>

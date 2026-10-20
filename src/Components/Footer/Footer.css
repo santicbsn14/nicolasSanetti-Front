@@ -59,14 +59,25 @@
     gap: 12px;
   }
   
-  .footer-social i {
-    font-size: 18px;
+  .footer-social svg {
+    width: 18px;
+    height: 18px;
     color: #fff;
     cursor: pointer;
   }
 
   .footer-social a,
+  .footer-column a,
+  .footer-link,
   .footer-contact-link {
     color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer-column a:hover,
+  .footer-link:hover,
+  .footer-contact-link:hover {
+    opacity: 0.7;
   }
   
