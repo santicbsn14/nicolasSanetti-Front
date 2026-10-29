@@ -1,5 +1,5 @@
 import React from 'react';
-import portHome from '../Imagenes/port-NicoSanetti-.webp';
+import Hero from './Hero';
 import ColorCarousel from './CarrouselServices';
 import estrellitas from '../Imagenes/estrellitas.png';
 import spa from '../Imagenes/spa-y-relax.png';
@@ -7,23 +7,12 @@ import infinito from '../Imagenes/infinito.png';
 import librito from '../Imagenes/librito.png';
 import fotoNicolas from '../Imagenes/fotoNicolas_.webp'
 import './Home.css'
+
 const Home: React.FC = () => {
   return (
     <div className="font-sans text-gray-900">
       {/* Portada */}
-<section 
-  className="hero-section" 
-  style={{
-    backgroundImage: `url(${portHome})`
-  }}
->
-  {/* Si después querés agregar contenido sobre la imagen, usá esta estructura:
-  <div className="hero-section__content">
-    <h1>Título</h1>
-    <p>Subtítulo</p>
-  </div>
-  */}
-</section>
+      <Hero />
 
       {/* Sección Color */}
       <ColorCarousel />
