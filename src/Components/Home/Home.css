@@ -140,6 +140,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* El recorte de cover se corre hacia arriba: en el video del hero las caras están en la parte de
+     arriba del cuadro, y centrado se cortaban en celular (hero casi cuadrado) y en pantallas anchas. */
+  object-position: center 20%;
   display: block;
 }
 

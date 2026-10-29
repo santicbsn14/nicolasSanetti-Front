@@ -1,12 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import heroEspaciosDesktop from '../Videos/hero-espacios-desktop.mp4';
-import heroEspaciosDesktopPoster from '../Videos/hero-espacios-desktop.webp';
-import heroEspaciosMobile from '../Videos/hero-espacios-mobile.mp4';
-import heroEspaciosMobilePoster from '../Videos/hero-espacios-mobile.webp';
-import heroSillonDesktop from '../Videos/hero-sillon-desktop.mp4';
-import heroSillonDesktopPoster from '../Videos/hero-sillon-desktop.webp';
-import heroSillonMobile from '../Videos/hero-sillon-mobile.mp4';
-import heroSillonMobilePoster from '../Videos/hero-sillon-mobile.webp';
+import heroDesktop from '../Videos/hero-desktop.mp4';
+import heroDesktopPoster from '../Videos/hero-desktop.webp';
+import heroMobile from '../Videos/hero-mobile.mp4';
+import heroMobilePoster from '../Videos/hero-mobile.webp';
 import ColorCarousel from './CarrouselServices';
 import estrellitas from '../Imagenes/estrellitas.png';
 import spa from '../Imagenes/spa-y-relax.png';
@@ -14,24 +10,17 @@ import infinito from '../Imagenes/infinito.png';
 import librito from '../Imagenes/librito.png';
 import fotoNicolas from '../Imagenes/fotoNicolas_.webp'
 import './Home.css'
-// TEMPORAL: comparar opciones de hero con Nico. Cuando elija, dejar una sola y borrar la otra.
-const HERO_VIDEOS = {
-  espacios: {
-    desktop: { src: heroEspaciosDesktop, poster: heroEspaciosDesktopPoster },
-    mobile: { src: heroEspaciosMobile, poster: heroEspaciosMobilePoster },
-  },
-  sillon: {
-    desktop: { src: heroSillonDesktop, poster: heroSillonDesktopPoster },
-    mobile: { src: heroSillonMobile, poster: heroSillonMobilePoster },
-  },
+// Video del hero elegido por Nico (material-nico/video-portada.mp4), en versión horizontal y vertical.
+const HERO_VIDEO = {
+  desktop: { src: heroDesktop, poster: heroDesktopPoster },
+  mobile: { src: heroMobile, poster: heroMobilePoster },
 };
 
 // Se decide una sola vez al montar: no cambia si se redimensiona la ventana.
 const elegirHero = () => {
-  const opcion = new URLSearchParams(window.location.search).get('hero') === 'sillon' ? 'sillon' : 'espacios';
   const formato = window.matchMedia('(orientation: landscape) and (min-width: 769px)').matches ? 'desktop' : 'mobile';
   return {
-    ...HERO_VIDEOS[opcion][formato],
+    ...HERO_VIDEO[formato],
     reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   };
 };
