@@ -1,8 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import heroDesktop from '../Videos/hero-desktop.mp4';
-import heroDesktopPoster from '../Videos/hero-desktop.webp';
-import heroMobile from '../Videos/hero-mobile.mp4';
-import heroMobilePoster from '../Videos/hero-mobile.webp';
+import React from 'react';
+import Hero from './Hero';
 import ColorCarousel from './CarrouselServices';
 import estrellitas from '../Imagenes/estrellitas.png';
 import spa from '../Imagenes/spa-y-relax.png';
@@ -10,50 +7,12 @@ import infinito from '../Imagenes/infinito.png';
 import librito from '../Imagenes/librito.png';
 import fotoNicolas from '../Imagenes/fotoNicolas_.webp'
 import './Home.css'
-// Video del hero elegido por Nico (material-nico/video-portada.mp4), en versión horizontal y vertical.
-const HERO_VIDEO = {
-  desktop: { src: heroDesktop, poster: heroDesktopPoster },
-  mobile: { src: heroMobile, poster: heroMobilePoster },
-};
-
-// Se decide una sola vez al montar: no cambia si se redimensiona la ventana.
-const elegirHero = () => {
-  const formato = window.matchMedia('(orientation: landscape) and (min-width: 769px)').matches ? 'desktop' : 'mobile';
-  return {
-    ...HERO_VIDEO[formato],
-    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  };
-};
 
 const Home: React.FC = () => {
-  const [hero] = useState(elegirHero);
-  const heroRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = heroRef.current;
-    if (!video || hero.reducedMotion) return;
-    // React no siempre deja el atributo muted en el DOM y sin él iOS no hace autoplay
-    video.muted = true;
-    video.play().catch(() => {});
-  }, [hero]);
-
   return (
     <div className="font-sans text-gray-900">
       {/* Portada */}
-<section className="hero-section">
-  <video
-    ref={heroRef}
-    className="hero-section__video"
-    src={hero.src}
-    poster={hero.poster}
-    autoPlay={!hero.reducedMotion}
-    preload={hero.reducedMotion ? 'none' : 'auto'}
-    muted
-    loop
-    playsInline
-    aria-hidden="true"
-  />
-</section>
+      <Hero />
 
       {/* Sección Color */}
       <ColorCarousel />
