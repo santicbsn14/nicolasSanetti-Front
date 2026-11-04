@@ -1,34 +1,17 @@
 .virtudes-section {
     position: relative;
     overflow: hidden;
-    background: radial-gradient(at top left, #1f1d1a, #000000);
+    /* Dos brillos suaves (arriba-izquierda y abajo-derecha) sobre el fondo oscuro.
+       Van en el mismo fondo y con tamaños relativos a la sección, así no hay bordes
+       duros en ningún ancho de pantalla. */
+    background:
+      radial-gradient(ellipse 85% 75% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%),
+      radial-gradient(ellipse 85% 75% at 100% 100%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%),
+      radial-gradient(at top left, #1f1d1a, #000000);
     color: white;
     padding: 80px 24px;
   }
-  
-  .virtudes-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 100%;
-    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .virtudes-section::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 60%;
-    height: 100%;
-    background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.2), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  
+
   .virtudes-grid {
     position: relative;
     z-index: 1; /* Para estar encima del fondo */

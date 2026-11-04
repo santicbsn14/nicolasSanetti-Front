@@ -8,6 +8,15 @@ const Navbar: FC = () => {
   const location = useLocation();
   const [navStyle, setNavStyle] = useState("");
     const [menuOpen, setMenuOpen] = useState(false);
+  // Al scrollear, la navbar pasa a tener fondo blanco para que se lea sobre secciones oscuras
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(prev => !prev);
@@ -35,7 +44,7 @@ const Navbar: FC = () => {
   }, [location.pathname]);
 
   return (
-    <header className={`navbar ${navStyle}`}>
+    <header className={`navbar ${navStyle} ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container">
         <h1 className="navbar__logo">NICOLAS SANETTI COIFFEUR</h1>
 

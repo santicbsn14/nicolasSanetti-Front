@@ -20,7 +20,30 @@ const Hero: React.FC = () => {
     if (!video || reducedMotion) return;
     // React no siempre deja el atributo muted en el DOM y sin él iOS no hace autoplay
     video.muted = true;
-    video.play().catch(() => {});
+
+    // Si el navegador bloquea el autoplay (iOS en bajo consumo), se reintenta
+    // con el primer toque o clic en cualquier parte de la página.
+    const reintentar = () => {
+      video.play().catch(() => {});
+    };
+    const quitarReintento = () => {
+      document.removeEventListener('touchstart', reintentar);
+      document.removeEventListener('click', reintentar);
+      video.removeEventListener('playing', quitarReintento);
+    };
+
+    let activo = true;
+    video.play().catch(() => {
+      if (!activo) return;
+      document.addEventListener('touchstart', reintentar, { once: true, passive: true });
+      document.addEventListener('click', reintentar, { once: true });
+      video.addEventListener('playing', quitarReintento, { once: true });
+    });
+
+    return () => {
+      activo = false;
+      quitarReintento();
+    };
   }, [reducedMotion]);
 
   return (
