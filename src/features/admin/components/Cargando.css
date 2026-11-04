@@ -1,0 +1,43 @@
+.adm-cargando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 16px;
+  text-align: center;
+  font-size: 17px;
+}
+
+.adm-cargando--pantalla {
+  min-height: 100vh;
+  min-height: 100dvh;
+  justify-content: center;
+}
+
+.adm-cargando__lento {
+  max-width: 320px;
+  color: var(--adm-texto-suave);
+  font-size: 15px;
+}
+
+.adm-ruedita {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border: 4px solid var(--adm-borde);
+  border-top-color: var(--adm-acento);
+  border-radius: 50%;
+  animation: adm-gira 0.8s linear infinite;
+}
+
+.adm-ruedita--chica {
+  width: 22px;
+  height: 22px;
+  border-width: 3px;
+}
+
+@keyframes adm-gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
