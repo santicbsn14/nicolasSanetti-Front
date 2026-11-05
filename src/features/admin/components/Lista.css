@@ -130,16 +130,11 @@
 /* Filtro de la galería */
 .adm-filtro {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  overflow-x: auto;
-  margin: 0 -16px 16px;
-  padding: 2px 16px 6px;
-  scrollbar-width: none;
+  margin-bottom: 16px;
 }
 
-.adm-filtro::-webkit-scrollbar {
-  display: none;
-}
 
 .adm-filtro__boton {
   flex: 0 0 auto;

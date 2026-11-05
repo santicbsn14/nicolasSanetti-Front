@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { mensaje } from './api'
 import { mover } from './util'
 
@@ -19,13 +19,17 @@ export function useLista<T extends Item>(
   const [ocupados, setOcupados] = useState<Set<string>>(new Set())
   const [reordenando, setReordenando] = useState(false)
 
+  // Solo vale la respuesta del último pedido: una carga vieja que llega tarde no pisa cambios hechos después
+  const ultimoPedido = useRef(0)
   const cargar = useCallback(async () => {
+    const pedido = ++ultimoPedido.current
     setError('')
     setItems(null)
     try {
-      setItems(await listar())
+      const lista = await listar()
+      if (pedido === ultimoPedido.current) setItems(lista)
     } catch (e) {
-      setError(mensaje(e))
+      if (pedido === ultimoPedido.current) setError(mensaje(e))
     }
   }, [listar])
 

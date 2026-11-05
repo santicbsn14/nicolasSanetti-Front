@@ -48,6 +48,7 @@ export default function ProductoForm() {
   const [guardando, setGuardando] = useState(false)
   const [inicial, setInicial] = useState<string | null>(esNuevo ? '' : null)
   const nombreRef = useRef<HTMLInputElement>(null)
+  const ultimoPedido = useRef(0)
   const lento = useLento(guardando)
 
   // Estado del formulario como texto, para saber si hay cambios sin guardar
@@ -66,10 +67,12 @@ export default function ProductoForm() {
 
   const cargar = useCallback(async () => {
     if (!id) return
+    const pedido = ++ultimoPedido.current
     setCargando(true)
     setErrorCarga('')
     try {
       const p = await obtenerProducto(id)
+      if (pedido !== ultimoPedido.current) return // llegó tarde: no pisa lo que ya se cargó o editó
       const filas = (p.variantes ?? []).map((v) => filaNueva(v.nombre, v.precio == null ? '' : String(v.precio)))
       const precioTexto = p.precio == null ? '' : String(p.precio)
       setNombre(p.nombre)
@@ -94,9 +97,9 @@ export default function ProductoForm() {
         }),
       )
     } catch (e) {
-      setErrorCarga(mensaje(e))
+      if (pedido === ultimoPedido.current) setErrorCarga(mensaje(e))
     } finally {
-      setCargando(false)
+      if (pedido === ultimoPedido.current) setCargando(false)
     }
   }, [id, setFotos])
 

@@ -32,6 +32,7 @@ export default function TrabajoForm() {
   const [guardando, setGuardando] = useState(false)
   const [inicial, setInicial] = useState<string | null>(esNuevo ? '' : null)
   const input = useRef<HTMLInputElement>(null)
+  const ultimoPedido = useRef(0)
   const lento = useLento(guardando)
 
   const actual = JSON.stringify({ servicio, descripcion, destacado, activo, foto: foto ? (foto.assetId ?? foto.clave) : null })
@@ -41,10 +42,12 @@ export default function TrabajoForm() {
 
   const cargar = useCallback(async () => {
     if (!id) return
+    const pedido = ++ultimoPedido.current
     setCargando(true)
     setErrorCarga('')
     try {
       const t = await obtenerTrabajo(id)
+      if (pedido !== ultimoPedido.current) return // llegó tarde: no pisa lo que ya se cargó o editó
       const lista = t.imagen ? [fotoDesdeAdmin(t.imagen)] : []
       setFotos(lista)
       setServicio(t.servicio)
@@ -61,9 +64,9 @@ export default function TrabajoForm() {
         }),
       )
     } catch (e) {
-      setErrorCarga(mensaje(e))
+      if (pedido === ultimoPedido.current) setErrorCarga(mensaje(e))
     } finally {
-      setCargando(false)
+      if (pedido === ultimoPedido.current) setCargando(false)
     }
   }, [id, setFotos])
 
