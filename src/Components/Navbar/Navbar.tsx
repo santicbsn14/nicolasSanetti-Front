@@ -51,22 +51,27 @@ const Navbar: FC = () => {
         <nav>
           <ul className={`navbar__menu ${menuOpen ? 'open' : ''}`}>
             <li>
-              <NavLink to="/" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 HOME
               </NavLink>
             </li>
             <li>
-              <NavLink to="/servicios" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/servicios" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 SERVICIOS
               </NavLink>
             </li>
             <li>
-              <NavLink to="/historia" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/galeria" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+                GALERÍA
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/historia" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 HISTORIA
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contacto" className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/contacto" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
                 CONTACTO
               </NavLink>
             </li>

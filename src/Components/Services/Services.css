@@ -244,3 +244,28 @@
   object-fit: cover;
   display: block;
 }
+
+/* Link a la galería filtrada por el servicio */
+.servicio-galeria-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 20px;
+  color: #131313;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.servicio-galeria-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.servicio-galeria-link:focus-visible {
+  outline: 2px solid #131313;
+  outline-offset: 3px;
+}

@@ -2,6 +2,9 @@
 
 const ORDEN = 'order(orden asc, _createdAt desc)'
 
+// Trabajos: las destacadas primero (el panel le dice a Nico que «Destacar» la pone primera)
+const ORDEN_TRABAJOS = 'order(destacado desc, orden asc, _createdAt desc)'
+
 export const PRODUCTOS_QUERY = `*[_type == "producto" && activo == true] | ${ORDEN} {
   _id,
   nombre,
@@ -33,6 +36,6 @@ const TRABAJO_CAMPOS = `{
   destacado
 }`
 
-export const TRABAJOS_QUERY = `*[_type == "trabajo" && activo == true] | ${ORDEN} ${TRABAJO_CAMPOS}`
+export const TRABAJOS_QUERY = `*[_type == "trabajo" && activo == true] | ${ORDEN_TRABAJOS} ${TRABAJO_CAMPOS}`
 
-export const TRABAJOS_POR_SERVICIO_QUERY = `*[_type == "trabajo" && activo == true && servicio == $servicio] | ${ORDEN} ${TRABAJO_CAMPOS}`
+export const TRABAJOS_POR_SERVICIO_QUERY = `*[_type == "trabajo" && activo == true && servicio == $servicio] | ${ORDEN_TRABAJOS} ${TRABAJO_CAMPOS}`

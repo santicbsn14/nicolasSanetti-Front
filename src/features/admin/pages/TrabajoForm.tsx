@@ -100,7 +100,7 @@ export default function TrabajoForm() {
     try {
       if (id) await editarTrabajo(id, datos)
       else await crearTrabajo(datos)
-      avisar('Guardado. Puede tardar hasta un minuto en verse en la web')
+      avisar('Guardado. Ya está en la web')
       navigate('/admin/galeria')
     } catch (err) {
       avisar(mensaje(err), 'error')

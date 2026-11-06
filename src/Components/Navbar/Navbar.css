@@ -205,3 +205,46 @@
     width: 25px;
   }
 }
+/* Entre celular y desktop ancho (769–1240 px) logo + 6 links no entran con el tamaño
+   normal (~1170 px): se achican letra y espacios para que la barra quede en un renglón. */
+.navbar__logo,
+.navbar__link {
+  white-space: nowrap;
+}
+
+@media (min-width: 769px) and (max-width: 1240px) {
+  .navbar__logo {
+    font-size: 21px;
+  }
+
+  .navbar__menu {
+    gap: 12px;
+  }
+
+  .navbar__menu li:not(:last-child)::after {
+    margin: 0 0 0 10px;
+  }
+
+  .navbar__link {
+    font-size: 14px;
+  }
+}
+
+/* Tablet angosta: sin los guiones separadores (como en el menú del celular) */
+@media (min-width: 769px) and (max-width: 900px) {
+  .navbar__logo {
+    font-size: 16px;
+  }
+
+  .navbar__menu {
+    gap: 14px;
+  }
+
+  .navbar__menu li:not(:last-child)::after {
+    display: none;
+  }
+
+  .navbar__link {
+    font-size: 12px;
+  }
+}

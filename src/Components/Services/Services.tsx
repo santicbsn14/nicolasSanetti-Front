@@ -1,4 +1,5 @@
 import type {FC} from 'react'
+import { Link } from 'react-router-dom'
 import port from '../Imagenes/port-services-port_.webp'
 // import primerService from '../Imagenes/primerService_.webp'
 import segundoService from '../Imagenes/ServicioDos_.webp'
@@ -13,6 +14,7 @@ const Services : FC = () =>{
     const servicios = [
         {
           titulo: 'LAVADO Y PEINADO',
+          slug: 'lavado-y-peinado',
           descripcion:
             'Más que un servicio, es un momento de relax y bienestar. Con nuestro lavacabezas premium a 180°, disfrutas de un masaje capilar revitalizante, acompañado de productos de alta calidad que nutren y protegen tu cabello. Te invitamos a desconectar y disfrutar de una experiencia única. Luego, nuestro equipo de expertos crea el peinado ideal para ti: desde un brushing perfecto hasta ondas suaves, un alisado impecable o un recogido elegante. Todo pensado para que tu look refleje tu estilo, realce tu belleza y te haga sentir radiante en cualquier ocasión.',
           media: video, // Cambiamos 'imagen' por 'media'
@@ -26,6 +28,7 @@ const Services : FC = () =>{
         },
         {
             titulo: 'CORTE Y BARBERÍA',
+            slug: 'corte-y-barberia',
             descripcion:
               'Es un momento de renovación. Con nuestro servicio premium, disfrutas de productos de calidad. Luego, creamos tu estilo ideal: cortes clásicos, degradados, perfilado de barba o afeitado, para que tu imagen refleje tu personalidad y te haga sentir impecable.',
             media: segundoService,
@@ -40,6 +43,7 @@ const Services : FC = () =>{
           },
           {
             titulo: 'COLORACIÓN Y MECHAS',
+            slug: 'coloracion-y-mechas',
             descripcion:
               'Más que un color, es una transformación. Con nuestra coloración premium, cuidamos tu cabello con productos de calidad y técnicas personalizadas. Disfruta de un servicio cómodo y relajante mientras creamos el tono ideal: balayage, babylights, reflejos o coloración completa, para que tu look resalte y te haga sentir única.',
             media: tercerService,
@@ -101,6 +105,10 @@ const Services : FC = () =>{
                 </div>
               ))}
             </div>
+            <Link className="servicio-galeria-link" to={`/galeria?servicio=${servicio.slug}`}>
+              Ver trabajos de {servicio.titulo.toLowerCase()}
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
           </div>
         </div>

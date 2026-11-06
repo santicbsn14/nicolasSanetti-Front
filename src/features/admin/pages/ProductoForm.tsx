@@ -154,7 +154,7 @@ export default function ProductoForm() {
     try {
       if (id) await editarProducto(id, datos)
       else await crearProducto(datos)
-      avisar('Guardado. Puede tardar hasta un minuto en verse en la web')
+      avisar('Guardado. Ya está en la web')
       navigate('/admin/productos')
     } catch (err) {
       avisar(mensaje(err), 'error')
