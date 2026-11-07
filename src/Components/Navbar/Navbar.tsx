@@ -1,8 +1,12 @@
 import type {FC} from 'react'
 import {  useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { ShoppingBag } from 'lucide-react';
 import { buildWaLink, MENSAJE_TURNO } from '../../features/whatsapp/whatsapp';
+import { useCarrito } from '../../features/pedido/carrito';
 import './Navbar.css';
+
+const claseLink = ({ isActive }: { isActive: boolean }) => (isActive ? 'navbar__link active' : 'navbar__link');
 
 const Navbar: FC = () => {
   const location = useLocation();
@@ -10,6 +14,7 @@ const Navbar: FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
   // Al scrollear, la navbar pasa a tener fondo blanco para que se lea sobre secciones oscuras
   const [scrolled, setScrolled] = useState(false);
+  const { cantidadTotal } = useCarrito();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -21,6 +26,7 @@ const Navbar: FC = () => {
   const toggleMenu = () => {
     setMenuOpen(prev => !prev);
   };
+  const cerrarMenu = () => setMenuOpen(false);
   // Esta función determina el estilo de la navbar según la ruta actual
   useEffect(() => {
     // Determinar el estilo basado en la ruta
@@ -46,32 +52,42 @@ const Navbar: FC = () => {
   return (
     <header className={`navbar ${navStyle} ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container">
-        <h1 className="navbar__logo">NICOLAS SANETTI COIFFEUR</h1>
+        <h1 className="navbar__logo">
+          <Link to="/" className="navbar__logo-link" onClick={cerrarMenu}>
+            NICOLAS SANETTI COIFFEUR
+          </Link>
+        </h1>
 
-        <nav>
-          <ul className={`navbar__menu ${menuOpen ? 'open' : ''}`}>
-            <li>
-              <NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+        <nav aria-label="Principal">
+          <ul id="navbar-menu" className={`navbar__menu ${menuOpen ? 'open' : ''}`}>
+            {/* En escritorio el logo lleva al inicio: HOME queda solo en el menú del celular */}
+            <li className="navbar__item--solo-menu">
+              <NavLink to="/" end onClick={cerrarMenu} className={claseLink}>
                 HOME
               </NavLink>
             </li>
             <li>
-              <NavLink to="/servicios" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/servicios" onClick={cerrarMenu} className={claseLink}>
                 SERVICIOS
               </NavLink>
             </li>
             <li>
-              <NavLink to="/galeria" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/galeria" onClick={cerrarMenu} className={claseLink}>
                 GALERÍA
               </NavLink>
             </li>
             <li>
-              <NavLink to="/historia" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/productos" onClick={cerrarMenu} className={claseLink}>
+                PRODUCTOS
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/historia" onClick={cerrarMenu} className={claseLink}>
                 HISTORIA
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contacto" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'navbar__link active' : 'navbar__link'}>
+              <NavLink to="/contacto" onClick={cerrarMenu} className={claseLink}>
                 CONTACTO
               </NavLink>
             </li>
@@ -81,17 +97,40 @@ const Navbar: FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="navbar__link"
-                onClick={() => setMenuOpen(false)}
+                onClick={cerrarMenu}
               >
                 RESERVÁ TU TURNO
               </a>
             </li>
           </ul>
         </nav>
-                <div className={`navbar__hamburger ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-          <div></div>
-          <div></div>
-          <div></div>
+
+        <div className="navbar__acciones">
+          {cantidadTotal > 0 && (
+            <NavLink
+              to="/pedido"
+              className={({ isActive }) => `navbar__pedido${isActive ? ' navbar__pedido--activo' : ''}`}
+              aria-label={`Ver tu pedido, ${cantidadTotal} ${cantidadTotal === 1 ? 'producto' : 'productos'}`}
+              onClick={cerrarMenu}
+            >
+              <ShoppingBag size={24} strokeWidth={1.75} aria-hidden="true" />
+              <span className="navbar__pedido-cantidad" aria-hidden="true">
+                {cantidadTotal > 99 ? '99+' : cantidadTotal}
+              </span>
+            </NavLink>
+          )}
+          <button
+            type="button"
+            className={`navbar__hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={toggleMenu}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={menuOpen}
+            aria-controls="navbar-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
     </header>
@@ -99,4 +138,3 @@ const Navbar: FC = () => {
 };
 
 export default Navbar;
-

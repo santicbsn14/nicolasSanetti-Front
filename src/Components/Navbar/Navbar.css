@@ -22,13 +22,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   width: 100%;
   max-width: 1512px;
   margin: 0 auto;
   position: relative; /* Importante para el posicionamiento del hamburger */
 }
 
-/* Logo */
+/* Logo (es link al inicio, con el mismo aspecto de siempre) */
 .navbar__logo {
   color: #131313;
   font-size: 26px;
@@ -36,8 +37,19 @@
   letter-spacing: 6%;
   text-transform: uppercase;
   padding: 0;
+  margin: 0;
+  white-space: nowrap;
   transition: color 0.3s ease;
-  /* Removí flex-grow para evitar problemas de espacio */
+}
+
+.navbar__logo-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navbar__logo-link:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: 3px;
 }
 
 /* Menú de navegación */
@@ -62,6 +74,11 @@
   color: #131313;
 }
 
+/* HOME: solo en el menú hamburguesa (en escritorio se llega con el logo) */
+.navbar__item--solo-menu {
+  display: none !important;
+}
+
 /* Enlaces del menú */
 .navbar__link {
   text-decoration: none;
@@ -70,6 +87,7 @@
   font-size: 16px;
   font-weight: 500;
   padding-bottom: 2px;
+  white-space: nowrap;
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
@@ -83,17 +101,82 @@
   border-bottom: 2px solid #007bff;
 }
 
+/* Ícono del pedido y hamburguesa */
+.navbar__acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.navbar__acciones:not(:has(.navbar__pedido)) {
+  gap: 0;
+}
+
+/* Ícono del pedido: solo aparece si el pedido tiene algo */
+.navbar__pedido {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #131313;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.navbar__pedido:hover,
+.navbar__pedido--activo {
+  background-color: rgba(19, 19, 19, 0.07);
+}
+
+.navbar__pedido:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: 2px;
+}
+
+.navbar__pedido-cantidad {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background-color: #e1a325;
+  color: #131313;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+
 /* Botón hamburguesa - oculto por defecto */
 .navbar__hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
   z-index: 100;
-  position: relative; /* Cambié de absolute a relative */
+  position: relative;
 }
 
-.navbar__hamburger div {
+.navbar__hamburger:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: 2px;
+}
+
+.navbar__hamburger span {
+  display: block;
   width: 30px;
   height: 3px;
   background-color: #131313;
@@ -101,45 +184,22 @@
   position: relative; /* Necesario para las animaciones */
 }
 
-/* Estilos para pantallas pequeñas */
-@media (max-width: 768px) {
-  /* Eliminar el scroll horizontal */
-  body {
-    overflow-x: hidden;
-  }
-
-  /* Ajustar padding del navbar en mobile */
-  .navbar {
-    padding: 10px 15px;
-  }
-
-  /* Contenedor ajustado para mobile */
-  .navbar__container {
-    /* El justify-content: space-between ya maneja la distribución */
-  }
-
-  /* Ajustar el logo en pantallas pequeñas */
-  .navbar__logo {
-    font-size: 18px; /* Reducido para que quepa mejor */
-    padding: 10px 0;
-    /* Limitar el ancho del logo para evitar overflow */
-    max-width: calc(100vw - 120px); /* Deja espacio para padding y hamburger */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
+/* La barra de escritorio va completa, en un renglón y con letra de 16 px, solo desde
+   1360 px: el contenido mide 1343 px con el ícono del pedido visible, más ~17 px de la barra
+   de scroll de Windows, que cuenta en el ancho de las media queries (ver docs/avances/09).
+   Por debajo, menú hamburguesa. */
+@media (max-width: 1359px) {
   /* Mostrar el botón hamburguesa */
   .navbar__hamburger {
     display: flex;
     flex-shrink: 0; /* Evita que se comprima */
   }
 
-  /* Menu oculto por defecto en pantallas pequeñas */
+  /* Menu oculto por defecto en pantallas chicas */
   .navbar__menu {
     display: none;
     position: absolute;
-    top: 100%; /* Cambiado de 60px a 100% para que se posicione relativo al navbar */
+    top: 100%; /* relativo al navbar */
     left: 0;
     right: 0;
     background-color: #fff;
@@ -156,7 +216,11 @@
     display: flex;
   }
 
-  /* Ajustar el tamaño de los enlaces en pantallas pequeñas */
+  .navbar__item--solo-menu {
+    display: flex !important;
+  }
+
+  /* Ajustar el tamaño de los enlaces en el menú */
   .navbar__link {
     font-size: 18px;
     text-align: center;
@@ -169,24 +233,53 @@
     text-align: center;
   }
 
-  /* Remover los separadores en mobile */
+  /* Remover los separadores en el menú */
   .navbar__menu li:not(:last-child)::after {
     display: none;
   }
-}
 
-/* Animación del hamburger */
-@media (max-width: 768px) {
-  .navbar__hamburger.open div:nth-child(1) {
+  /* Animación del hamburger */
+  .navbar__hamburger.open span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
 
-  .navbar__hamburger.open div:nth-child(2) {
+  .navbar__hamburger.open span:nth-child(2) {
     opacity: 0;
   }
 
-  .navbar__hamburger.open div:nth-child(3) {
+  .navbar__hamburger.open span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Eliminar el scroll horizontal */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Ajustar padding del navbar en mobile */
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar__container {
+    gap: 8px;
+  }
+
+  /* Ajustar el logo en pantallas pequeñas */
+  .navbar__logo {
+    font-size: 18px; /* Reducido para que quepa mejor */
+    padding: 10px 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .navbar__acciones {
+    gap: 2px;
   }
 }
 
@@ -198,53 +291,9 @@
 
   .navbar__logo {
     font-size: 16px;
-    max-width: calc(100vw - 100px);
   }
 
-  .navbar__hamburger div {
+  .navbar__hamburger span {
     width: 25px;
-  }
-}
-/* Entre celular y desktop ancho (769–1240 px) logo + 6 links no entran con el tamaño
-   normal (~1170 px): se achican letra y espacios para que la barra quede en un renglón. */
-.navbar__logo,
-.navbar__link {
-  white-space: nowrap;
-}
-
-@media (min-width: 769px) and (max-width: 1240px) {
-  .navbar__logo {
-    font-size: 21px;
-  }
-
-  .navbar__menu {
-    gap: 12px;
-  }
-
-  .navbar__menu li:not(:last-child)::after {
-    margin: 0 0 0 10px;
-  }
-
-  .navbar__link {
-    font-size: 14px;
-  }
-}
-
-/* Tablet angosta: sin los guiones separadores (como en el menú del celular) */
-@media (min-width: 769px) and (max-width: 900px) {
-  .navbar__logo {
-    font-size: 16px;
-  }
-
-  .navbar__menu {
-    gap: 14px;
-  }
-
-  .navbar__menu li:not(:last-child)::after {
-    display: none;
-  }
-
-  .navbar__link {
-    font-size: 12px;
   }
 }

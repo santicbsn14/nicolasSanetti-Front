@@ -1,0 +1,351 @@
+/* ===== /pedido ===== */
+.pedido__caja {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 88px 16px 96px;
+}
+
+.pedido__volver {
+  margin-bottom: 4px;
+}
+
+.pedido__titulo {
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+.pedido .productos-aviso {
+  margin-top: 0;
+  padding-top: 24px;
+}
+
+.pedido__avisos:empty {
+  display: none;
+}
+
+.pedido__aviso {
+  margin: 0 0 10px;
+  padding: 10px 14px;
+  border-radius: 0.5rem;
+  background-color: #fbf3e2;
+  border-left: 3px solid #e1a325;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.pedido__aviso--error {
+  background-color: #f6efef;
+  border-left-color: #a33b3b;
+}
+
+/* ----- Lista ----- */
+.pedido-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e6e0d6;
+}
+
+.pedido-item {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  grid-template-areas:
+    'foto datos'
+    'foto acciones';
+  column-gap: 14px;
+  row-gap: 10px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e6e0d6;
+}
+
+.pedido-item__foto {
+  grid-area: foto;
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #f4efe5;
+}
+
+.pedido-item__foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pedido-item__datos {
+  grid-area: datos;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pedido-item__nombre {
+  color: #131313;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a.pedido-item__nombre:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a.pedido-item__nombre:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: 2px;
+}
+
+.pedido-item__variante,
+.pedido-item__unitario {
+  font-size: 14px;
+  color: #555555;
+}
+
+.pedido-item__estado {
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8a2f2f;
+}
+
+.pedido-item__acciones {
+  grid-area: acciones;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.pedido-item__subtotal {
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.pedido-item__quitar {
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: #555555;
+  font-family: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.pedido-item__quitar:hover {
+  color: #131313;
+}
+
+.pedido-item__quitar:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: 2px;
+}
+
+/* Ya no está: atenuado (el «Quitar» sigue a la vista) */
+.pedido-item--no-disponible .pedido-item__foto,
+.pedido-item--no-disponible .pedido-item__nombre,
+.pedido-item--no-disponible .pedido-item__variante {
+  opacity: 0.5;
+}
+
+.pedido-item--no-disponible .pedido-item__nombre {
+  text-decoration: line-through;
+}
+
+.pedido-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin: 18px 0 0;
+  font-size: 17px;
+}
+
+.pedido-total strong {
+  font-size: 19px;
+  text-align: right;
+}
+
+/* ----- Datos del cliente ----- */
+.pedido-form {
+  margin-top: 36px;
+  padding: 24px 18px;
+  border-radius: 0.75rem;
+  background-color: #f8f5ef;
+}
+
+.pedido-form__titulo {
+  margin: 0 0 18px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.pedido-campo {
+  margin: 0 0 20px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.pedido-campo label,
+.pedido-campo legend {
+  display: block;
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.pedido-campo__opcional {
+  font-weight: 400;
+  color: #555555;
+}
+
+.pedido-campo input[type='text'],
+.pedido-campo textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #b9b1a4;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  color: #131313;
+  font-family: inherit;
+  font-size: 16px; /* 16 px: iOS no hace zoom al enfocar */
+}
+
+.pedido-campo textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.pedido-campo input:focus-visible,
+.pedido-campo textarea:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: 1px;
+  border-color: #131313;
+}
+
+.pedido-campo input[aria-invalid='true'] {
+  border-color: #a33b3b;
+}
+
+.pedido-campo__error {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #8a2f2f;
+}
+
+.pedido-campo__cuenta {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #555555;
+  text-align: right;
+}
+
+.pedido-entrega__opciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pedido-campo .pedido-entrega__opcion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid #b9b1a4;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pedido-entrega__opcion input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pedido-campo .pedido-entrega__opcion--activa {
+  border-color: #131313;
+  background-color: #131313;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.pedido-entrega__opcion:has(input:focus-visible) {
+  outline: 2px solid #e1a325;
+  outline-offset: 2px;
+}
+
+.pedido-enviar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.pedido-enviar:disabled {
+  background-color: #8a857d;
+  border-color: #8a857d;
+  cursor: default;
+  transform: none;
+}
+
+.pedido-enviado {
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid #e6e0d6;
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.pedido-enviado p {
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .pedido__caja {
+    padding: 120px 32px 120px;
+  }
+
+  .pedido-item {
+    grid-template-columns: 72px minmax(0, 1fr) auto;
+    grid-template-areas: 'foto datos acciones';
+    align-items: center;
+  }
+
+  .pedido-item__subtotal {
+    min-width: 90px;
+    text-align: right;
+  }
+
+  .pedido-form {
+    padding: 28px 28px;
+  }
+}

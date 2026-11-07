@@ -1,0 +1,192 @@
+/* ===== Barra «Tu pedido» y aviso «Agregado» =====
+   z-index 45: por encima del botón de WhatsApp (40) y debajo de la navbar (50). */
+:root {
+  --pedido-barra-alto: 64px;
+}
+
+.pedido-barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  background-color: #131313;
+  color: #ffffff;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.18);
+  animation: pedido-subir 0.25s ease both;
+}
+
+.pedido-barra__interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1200px;
+  height: var(--pedido-barra-alto);
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.pedido-barra__texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin: 0;
+  text-align: left;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.pedido-barra__titulo {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.pedido-barra__total {
+  font-size: 14px;
+  color: #f1d9a6;
+}
+
+.pedido-barra__mas {
+  color: #cfcfcf;
+}
+
+.pedido-barra__btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 2px;
+  background-color: #e1a325;
+  color: #131313;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.pedido-barra__btn:hover {
+  background-color: #f0b53a;
+}
+
+.pedido-barra__btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Lugar abajo para que la barra no tape el final del footer */
+body.con-barra-pedido {
+  padding-bottom: calc(var(--pedido-barra-alto) + env(safe-area-inset-bottom));
+}
+
+/* El botón flotante de WhatsApp sube por encima de la barra */
+body.con-barra-pedido .whatsapp-float {
+  bottom: calc(var(--pedido-barra-alto) + 16px + env(safe-area-inset-bottom));
+}
+
+/* ----- Aviso ----- */
+.pedido-aviso-zona {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 46;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.pedido-aviso {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+  margin-bottom: calc(16px + env(safe-area-inset-bottom));
+  padding: 10px 10px 10px 16px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  color: #131313;
+  font-size: 14px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+  border: 1px solid #e6e0d6;
+  animation: pedido-aviso 0.25s ease both;
+}
+
+.pedido-aviso--sobre-barra {
+  margin-bottom: calc(var(--pedido-barra-alto) + 12px + env(safe-area-inset-bottom));
+}
+
+.pedido-aviso__texto {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pedido-aviso__link {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background-color: #131313;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pedido-aviso__link:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: 2px;
+}
+
+/* Celular: el botón de WhatsApp (48 px, a 16 px del borde) queda abajo a la derecha;
+   el aviso va por encima de él para no taparlo */
+@media (max-width: 768px) {
+  .pedido-aviso {
+    margin-bottom: calc(16px + 48px + 12px + env(safe-area-inset-bottom));
+  }
+
+  .pedido-aviso--sobre-barra {
+    margin-bottom: calc(var(--pedido-barra-alto) + 16px + 48px + 12px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 768px) {
+  .pedido-barra__interior {
+    padding: 0 32px;
+  }
+}
+
+@keyframes pedido-subir {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes pedido-aviso {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pedido-barra,
+  .pedido-aviso {
+    animation: none;
+  }
+}

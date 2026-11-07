@@ -19,6 +19,7 @@ const Footer: FC = () => {
             <li><NavLink to="/" className="footer-link">Home</NavLink></li>
             <li><NavLink to="/servicios" className="footer-link">Servicios</NavLink></li>
             <li><NavLink to="/galeria" className="footer-link">Galería</NavLink></li>
+            <li><NavLink to="/productos" className="footer-link">Productos</NavLink></li>
             <li><NavLink to="/historia" className="footer-link">Historia</NavLink></li>
             <li>
               <a

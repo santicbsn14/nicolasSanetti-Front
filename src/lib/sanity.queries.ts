@@ -12,6 +12,7 @@ export const PRODUCTOS_QUERY = `*[_type == "producto" && activo == true] | ${ORD
   "imagen": imagenes[0],
   precio,
   mostrarPrecio,
+  variantes[]{ _key, nombre, precio },
   categoria
 }`
 
@@ -26,6 +27,17 @@ export const PRODUCTO_POR_SLUG_QUERY = `*[_type == "producto" && activo == true 
   variantes,
   categoria,
   orden
+}`
+
+// Para revalidar el pedido guardado en el navegador: solo vuelven los productos que siguen visibles
+export const PRODUCTOS_POR_IDS_QUERY = `*[_type == "producto" && activo == true && _id in $ids] {
+  _id,
+  nombre,
+  "slug": slug.current,
+  "imagen": imagenes[0],
+  precio,
+  mostrarPrecio,
+  variantes[]{ _key, nombre, precio }
 }`
 
 const TRABAJO_CAMPOS = `{
