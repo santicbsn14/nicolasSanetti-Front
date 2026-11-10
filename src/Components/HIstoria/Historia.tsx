@@ -1,22 +1,25 @@
-import type {FC} from 'react'
+import { useEffect, type FC } from 'react'
 import port from '../Imagenes/port-historia.webp'
 import imagen1 from '../Imagenes/historiaUno.webp'
 import imagen2 from '../Imagenes/historiaDos_.webp'
 import imagen3 from '../Imagenes/historiaTres_.webp'
 import imagen4 from '../Imagenes/historiaCuatro_.webp'
-import imagen5 from '../Imagenes/historiaCinco_.webp'
+import imagen5 from '../Imagenes/historia-confianza.webp'
 import './Historia.css'
 const Historia : FC = () =>{
+    useEffect(() => {
+        const anterior = document.title
+        document.title = 'Quiénes somos | Nicolás Sanetti Coiffeur'
+        return () => {
+            document.title = anterior
+        }
+    }, [])
+
     return (
         <section className='historia'>
             <div className='port-historia'>
-                <img className='port-historia-img' src={port} alt="Imagen de portada Historia" />
-                <div className="titulo-overlay">HISTORIA</div>
-            </div>
-            <div className="mosaico-precios"> 
-                <span>Precios vigentes desde el 4/12/2024 </span> 
-                <span className="divider">|</span> 
-                <span>3 y 6 cuotas sin interés</span>
+                <img className='port-historia-img' src={port} alt="Portada de Quiénes somos" />
+                <div className="titulo-overlay">QUIÉNES SOMOS</div>
             </div>
             <div className="historia-contenido">
                 {/* Sección 1 */}

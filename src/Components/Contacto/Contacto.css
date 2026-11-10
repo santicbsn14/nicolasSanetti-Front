@@ -98,3 +98,8 @@
     background-color: #333;
   }
   
+  .contacto-info__nota {
+    display: block;
+    font-size: 0.875rem;
+    color: #555;
+  }

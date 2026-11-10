@@ -198,8 +198,7 @@ a.pedido-item__nombre:focus-visible {
   min-width: 0;
 }
 
-.pedido-campo label,
-.pedido-campo legend {
+.pedido-campo label {
   display: block;
   margin-bottom: 8px;
   padding: 0;
@@ -256,46 +255,14 @@ a.pedido-item__nombre:focus-visible {
   text-align: right;
 }
 
-.pedido-entrega__opciones {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.pedido-campo .pedido-entrega__opcion {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 56px;
-  margin: 0;
-  padding: 8px 12px;
-  border: 1px solid #b9b1a4;
-  border-radius: 0.5rem;
-  background-color: #ffffff;
+.pedido-retiro {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border-left: 3px solid #e1a325;
+  background-color: #f4efe5;
+  color: #131313;
   font-size: 15px;
-  font-weight: 500;
-  line-height: 1.3;
-  text-align: center;
-  cursor: pointer;
-}
-
-.pedido-entrega__opcion input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.pedido-campo .pedido-entrega__opcion--activa {
-  border-color: #131313;
-  background-color: #131313;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.pedido-entrega__opcion:has(input:focus-visible) {
-  outline: 2px solid #e1a325;
-  outline-offset: 2px;
+  line-height: 1.5;
 }
 
 .pedido-enviar {
@@ -309,7 +276,7 @@ a.pedido-item__nombre:focus-visible {
   cursor: pointer;
 }
 
-.pedido-enviar:disabled {
+.pedido-enviar[aria-disabled='true'] {
   background-color: #8a857d;
   border-color: #8a857d;
   cursor: default;

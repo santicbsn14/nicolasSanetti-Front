@@ -40,7 +40,6 @@ test('mensaje: el ejemplo del brief (mezcla con «consultar precio», con varian
   const m = armarMensajePedido({
     items: [shampoo500, crema],
     nombre: '  Juan ',
-    entrega: 'retiro',
     comentario: 'Paso el sábado a la mañana',
   })
   assert.equal(
@@ -54,7 +53,6 @@ test('mensaje: el ejemplo del brief (mezcla con «consultar precio», con varian
       'Total: $ 25.000 + productos a consultar',
       '',
       'Nombre: Juan',
-      'Entrega: Retiro en el salón',
       'Comentario: Paso el sábado a la mañana',
     ].join('\n'),
   )
@@ -64,7 +62,6 @@ test('mensaje: todo con precio, sin comentario (no va la línea)', () => {
   const m = armarMensajePedido({
     items: [shampoo500, { ...aceite, cantidad: 3 }],
     nombre: 'Ana',
-    entrega: 'envio',
     comentario: '   ',
   })
   assert.equal(
@@ -78,13 +75,12 @@ test('mensaje: todo con precio, sin comentario (no va la línea)', () => {
       'Total: $ 48.400',
       '',
       'Nombre: Ana',
-      'Entrega: Envío a coordinar',
     ].join('\n'),
   )
 })
 
 test('mensaje: nada con precio visible (sin línea de total)', () => {
-  const m = armarMensajePedido({ items: [crema, sinPrecio], nombre: 'Leo', entrega: 'retiro' })
+  const m = armarMensajePedido({ items: [crema, sinPrecio], nombre: 'Leo' })
   assert.equal(
     m,
     [
@@ -94,10 +90,11 @@ test('mensaje: nada con precio visible (sin línea de total)', () => {
       '• 1 × Tónico — consultar precio',
       '',
       'Nombre: Leo',
-      'Entrega: Retiro en el salón',
     ].join('\n'),
   )
   assert.doesNotMatch(m, /Total/)
+  // Solo retiro en el salón: el mensaje nunca lleva línea de entrega
+  assert.doesNotMatch(m, /Entrega/)
 })
 
 test('carrito: mismo producto + misma variante suma; otra variante es otro ítem; tope 20', () => {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { client } from '../../lib/sanity'
 import { PRODUCTOS_POR_IDS_QUERY } from '../../lib/sanity.queries'
@@ -13,13 +13,7 @@ import {
 } from '../../features/pedido/carrito'
 import { formatoPrecio } from '../../features/pedido/formato'
 import { claveItem, precioVisible, subtotal, type ItemPedido } from '../../features/pedido/items'
-import {
-  armarMensajePedido,
-  ENTREGAS,
-  nombreConVariante,
-  textoTotal,
-  type Entrega,
-} from '../../features/pedido/mensaje'
+import { armarMensajePedido, nombreConVariante, textoTotal } from '../../features/pedido/mensaje'
 import Cantidad from './Cantidad'
 import { altProducto, CONSULTAR, imagenCuadrada, precioDe, tituloPagina } from './productos.utils'
 import '../Home/Hero.css'
@@ -29,26 +23,23 @@ import './Pedido.css'
 const CLAVE_CLIENTE = 'nsc-pedido-cliente-v1'
 const MAX_COMENTARIO = 300
 
+// Antes se guardaba también «entrega» (retiro/envío): si quedó en el navegador, se ignora
 interface DatosCliente {
   nombre: string
-  entrega: Entrega
 }
 
 function leerCliente(): DatosCliente {
   try {
     const d = JSON.parse(window.localStorage.getItem(CLAVE_CLIENTE) ?? 'null') as Partial<DatosCliente> | null
-    return {
-      nombre: typeof d?.nombre === 'string' ? d.nombre.slice(0, 60) : '',
-      entrega: d?.entrega === 'envio' ? 'envio' : 'retiro',
-    }
+    return { nombre: typeof d?.nombre === 'string' ? d.nombre.slice(0, 60) : '' }
   } catch {
-    return { nombre: '', entrega: 'retiro' }
+    return { nombre: '' }
   }
 }
 
 function guardarCliente(d: DatosCliente) {
   try {
-    window.localStorage.setItem(CLAVE_CLIENTE, JSON.stringify(d))
+    window.localStorage.setItem(CLAVE_CLIENTE, JSON.stringify({ nombre: d.nombre }))
   } catch {
     // sin storage: no se recuerda, no pasa nada
   }
@@ -144,21 +135,24 @@ function Pedido() {
   const disponibles = items.filter((i) => !noDisponibles.has(claveItem(i)))
   const total = textoTotal(disponibles)
 
-  const enviar = (e: FormEvent) => {
-    e.preventDefault()
+  const puedeEnviar = revision !== 'revisando' && disponibles.length > 0
+  // Link real (no window.open): más confiable en los navegadores internos de Instagram y Facebook
+  const linkPedido = puedeEnviar
+    ? buildWaLink(armarMensajePedido({ items: disponibles, nombre: cliente.nombre, comentario }))
+    : undefined
+
+  // Sin nombre (o sin nada para mandar) el link no navega
+  const enviar = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (!puedeEnviar) {
+      e.preventDefault()
+      return
+    }
     if (!cliente.nombre.trim()) {
+      e.preventDefault()
       setErrorNombre(true)
       nombreRef.current?.focus()
       return
     }
-    if (disponibles.length === 0) return
-    const mensaje = armarMensajePedido({
-      items: disponibles,
-      nombre: cliente.nombre,
-      entrega: cliente.entrega,
-      comentario,
-    })
-    window.open(buildWaLink(mensaje), '_blank', 'noopener,noreferrer')
     setEnviado(true)
   }
 
@@ -212,7 +206,7 @@ function Pedido() {
           </p>
         )}
 
-        <form className="pedido-form" onSubmit={enviar} noValidate>
+        <form className="pedido-form" onSubmit={(e) => e.preventDefault()} noValidate>
           <h2 className="pedido-form__titulo">Tus datos</h2>
 
           <div className="pedido-campo">
@@ -239,26 +233,9 @@ function Pedido() {
             )}
           </div>
 
-          <fieldset className="pedido-campo pedido-entrega">
-            <legend>¿Cómo lo querés recibir?</legend>
-            <div className="pedido-entrega__opciones">
-              {ENTREGAS.map((op) => (
-                <label
-                  key={op.valor}
-                  className={`pedido-entrega__opcion${cliente.entrega === op.valor ? ' pedido-entrega__opcion--activa' : ''}`}
-                >
-                  <input
-                    type="radio"
-                    name="entrega"
-                    value={op.valor}
-                    checked={cliente.entrega === op.valor}
-                    onChange={() => cambiarCliente({ entrega: op.valor })}
-                  />
-                  {op.texto}
-                </label>
-              ))}
-            </div>
-          </fieldset>
+          <p className="pedido-retiro">
+            Lo retirás en el salón: Colón 153, San Nicolás. Te avisamos por WhatsApp cuando esté listo.
+          </p>
 
           <div className="pedido-campo">
             <label htmlFor="pedido-comentario">
@@ -277,13 +254,17 @@ function Pedido() {
             </p>
           </div>
 
-          <button
-            type="submit"
+          <a
+            href={linkPedido}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hero__btn hero__btn--primario pedido-enviar"
-            disabled={revision === 'revisando' || disponibles.length === 0}
+            aria-disabled={!puedeEnviar || undefined}
+            onClick={enviar}
+            onAuxClick={enviar}
           >
             {revision === 'revisando' ? 'Revisando precios…' : 'Enviar pedido por WhatsApp'}
-          </button>
+          </a>
           {disponibles.length === 0 && revision !== 'revisando' && (
             <p className="pedido-campo__error">Ninguno de estos productos está disponible ahora.</p>
           )}

@@ -64,7 +64,8 @@ function AppRoutes() {
             </Suspense>
           }
         />
-        <Route path='/historia' element={<Historia />} />
+        <Route path='/quienes-somos' element={<Historia />} />
+        <Route path='/historia' element={<Navigate to="/quienes-somos" replace />} />
         <Route path='/contacto' element={<Contacto />} />
         <Route path="/turnos/*" element={<Navigate to="/" replace />} />
         <Route

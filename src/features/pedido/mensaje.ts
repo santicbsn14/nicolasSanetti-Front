@@ -2,22 +2,11 @@
 import { formatoPrecio } from './formato.ts'
 import { calcularTotal, subtotal, type ItemPedido } from './items.ts'
 
-export type Entrega = 'retiro' | 'envio'
-
-export const ENTREGAS: { valor: Entrega; texto: string }[] = [
-  { valor: 'retiro', texto: 'Retiro en el salón' },
-  { valor: 'envio', texto: 'Envío a coordinar' },
-]
-
-export function textoEntrega(e: Entrega): string {
-  return ENTREGAS.find((x) => x.valor === e)?.texto ?? ENTREGAS[0].texto
-}
-
+// Los pedidos se retiran en el salón (no hay envíos): el mensaje no lleva línea de entrega
 export interface DatosPedido {
   // Solo los ítems disponibles (los que «ya no están» no se mandan)
   items: ItemPedido[]
   nombre: string
-  entrega: Entrega
   comentario?: string
 }
 
@@ -31,7 +20,7 @@ export function textoTotal(items: ItemPedido[]): string | null {
   return `${formatoPrecio(total)}${hayConsultar ? ' + productos a consultar' : ''}`
 }
 
-export function armarMensajePedido({ items, nombre, entrega, comentario }: DatosPedido): string {
+export function armarMensajePedido({ items, nombre, comentario }: DatosPedido): string {
   const lineas = items.map((i) => {
     const s = subtotal(i)
     const precio = s === null ? 'consultar precio' : formatoPrecio(s)
@@ -43,7 +32,7 @@ export function armarMensajePedido({ items, nombre, entrega, comentario }: Datos
   const total = textoTotal(items)
   if (total) partes.push(`Total: ${total}`)
 
-  const datos = [`Nombre: ${nombre.trim()}`, `Entrega: ${textoEntrega(entrega)}`]
+  const datos = [`Nombre: ${nombre.trim()}`]
   const c = comentario?.trim()
   if (c) datos.push(`Comentario: ${c}`)
   partes.push(datos.join('\n'))

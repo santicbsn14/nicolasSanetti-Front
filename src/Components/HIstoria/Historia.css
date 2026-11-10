@@ -9,9 +9,6 @@
     text-transform: uppercase;
     letter-spacing: 4%;
   }
-  .divider {
-    margin: 0 15px;
-  }
   
   /* Contenedor principal de la sección */
   .historia {
@@ -31,25 +28,11 @@
   
   /* Imagen de portada */
   .port-historia-img {
-    width: 1512px;
+    width: 100%;
     height: 508px;
     display: block;
     object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
     max-width: 100%; /* Limita el ancho máximo */
-  }
-  
-  /* Mosaico negro con los precios */
-  .mosaico-precios {
-    background-color: #000;
-    color: #fff;
-    width: 100%;
-    padding: 12px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    font-size: 14px;
-    box-sizing: border-box; /* Importante para que padding no afecte el ancho */
   }
   /* Estilos para el contenido de Historia */
 .historia-contenido {
@@ -156,18 +139,6 @@
     object-fit: cover;
   }
 
-  .mosaico-precios {
-    flex-direction: column;
-    text-align: center;
-    gap: 4px;
-    font-size: 13px;
-    padding: 8px;
-  }
-
-  .divider {
-    display: none;
-  }
-
   .historia-contenido {
     padding: 32px 16px;
   }
@@ -187,5 +158,19 @@
   .historia-titulo {
     font-size: 20px;
     text-align: center;
+  }
+}
+
+/* Celular: la portada (1512×413) quedaba de ~106 px de alto, debajo de la navbar fija,
+   y «QUIÉNES SOMOS» no entraba. Más alto y el título en un renglón. */
+@media screen and (max-width: 768px) {
+  .port-historia .port-historia-img {
+    height: 220px;
+  }
+
+  .port-historia .titulo-overlay {
+    top: calc(50% + 24px);
+    font-size: clamp(1.75rem, 8vw, 2.4rem);
+    white-space: nowrap;
   }
 }

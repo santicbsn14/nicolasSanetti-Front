@@ -37,7 +37,7 @@ const Navbar: FC = () => {
       case '/servicios':
         setNavStyle("navbar--servicios");
         break;
-      case '/historia':
+      case '/quienes-somos':
         setNavStyle("navbar--historia");
         break;
       case '/contacto':
@@ -82,8 +82,8 @@ const Navbar: FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/historia" onClick={cerrarMenu} className={claseLink}>
-                HISTORIA
+              <NavLink to="/quienes-somos" onClick={cerrarMenu} className={claseLink}>
+                NOSOTROS
               </NavLink>
             </li>
             <li>
