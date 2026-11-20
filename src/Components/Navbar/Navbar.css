@@ -297,3 +297,21 @@
     width: 25px;
   }
 }
+
+/* En modo hamburguesa la navbar va siempre con fondo blanco: transparente, el logo
+   oscuro no se leía sobre las portadas con foto. La sombra aparece recién con scroll
+   (.navbar--scrolled). En escritorio (≥ 1360 px) sigue transparente hasta scrollear. */
+@media (max-width: 1359px) {
+  .navbar {
+    background-color: #ffffff;
+  }
+}
+
+/* En modo hamburguesa la navbar va siempre con fondo blanco: transparente, el logo
+   oscuro no se leía sobre las portadas con foto. La sombra aparece recién con scroll
+   (.navbar--scrolled). En escritorio (≥ 1360 px) sigue transparente hasta scrollear. */
+@media (max-width: 1359px) {
+  .navbar {
+    background-color: #ffffff;
+  }
+}

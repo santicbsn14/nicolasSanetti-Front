@@ -103,3 +103,10 @@
     font-size: 0.875rem;
     color: #555;
   }
+
+/* Modo hamburguesa: la navbar es blanca y fija (64 px), y tapaba el título */
+@media (max-width: 1359px) {
+  .contacto-container {
+    padding-top: 88px;
+  }
+}

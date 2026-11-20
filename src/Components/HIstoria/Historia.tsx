@@ -1,5 +1,6 @@
 import { useEffect, type FC } from 'react'
-import port from '../Imagenes/port-historia.webp'
+import port from '../Imagenes/port-nosotros.webp'
+import portCelu from '../Imagenes/port-nosotros-celu.webp'
 import imagen1 from '../Imagenes/historiaUno.webp'
 import imagen2 from '../Imagenes/historiaDos_.webp'
 import imagen3 from '../Imagenes/historiaTres_.webp'
@@ -18,7 +19,10 @@ const Historia : FC = () =>{
     return (
         <section className='historia'>
             <div className='port-historia'>
-                <img className='port-historia-img' src={port} alt="Portada de Quiénes somos" />
+                <picture>
+                    <source media="(max-width: 768px)" srcSet={portCelu} type="image/webp" />
+                    <img className='port-historia-img' src={port} alt="Portada de Quiénes somos" />
+                </picture>
                 <div className="titulo-overlay">QUIÉNES SOMOS</div>
             </div>
             <div className="historia-contenido">
