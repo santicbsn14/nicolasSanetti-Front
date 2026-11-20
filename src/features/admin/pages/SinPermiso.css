@@ -1,0 +1,15 @@
+.adm-sinpermiso {
+  padding: 24px 18px 20px;
+  text-align: center;
+}
+
+.adm-sinpermiso__titulo {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.adm-sinpermiso__email {
+  margin-bottom: 20px;
+  word-break: break-all;
+}

@@ -1,0 +1,90 @@
+/* ===== Página /galeria ===== */
+.galeria {
+  display: block;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #131313;
+}
+
+/* Encabezado: mismo lenguaje que la portada (eyebrow, título y brillo cálido) */
+.galeria-encabezado {
+  background:
+    radial-gradient(ellipse 60% 90% at 50% 0%, #f3eee7 0%, rgba(243, 238, 231, 0) 70%),
+    #ffffff;
+  padding: 104px 20px 28px; /* arriba deja lugar a la navbar fija */
+  text-align: center;
+}
+
+.galeria-bajada {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333333;
+  max-width: 440px;
+  margin: 16px auto 0;
+}
+
+.galeria-cuerpo {
+  padding: 8px 16px 0;
+}
+
+/* Avisos: sin fotos o error */
+.galeria-aviso {
+  max-width: 440px;
+  margin: 24px auto 0;
+  padding: 40px 0 16px;
+  text-align: center;
+}
+
+.galeria-aviso p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0 0 22px;
+}
+
+.galeria-reintentar {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Cierre */
+.galeria-cierre {
+  padding: 64px 20px 80px;
+  text-align: center;
+}
+
+.galeria-cierre h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #131313;
+  margin: 0 0 22px;
+}
+
+@media (min-width: 768px) {
+  .galeria-encabezado {
+    padding: 128px 32px 36px;
+  }
+
+  .galeria-cuerpo {
+    padding: 8px 32px 0;
+  }
+
+  .galeria-cierre {
+    padding: 88px 32px 104px;
+  }
+
+  .galeria-cierre h2 {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .galeria-encabezado {
+    padding: 140px 40px 40px;
+  }
+
+  .galeria-cuerpo {
+    padding: 8px 40px 0;
+  }
+}

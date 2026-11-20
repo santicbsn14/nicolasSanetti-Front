@@ -1,0 +1,85 @@
+.adm-fotos__grilla {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (min-width: 560px) {
+  .adm-fotos__grilla {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.adm-fotos__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adm-fotos__marco {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f0ece6;
+  border: 1px solid var(--adm-borde);
+}
+
+.adm-fotos__item--primera .adm-fotos__marco {
+  border: 2px solid var(--adm-acento);
+}
+
+.adm-fotos__marco img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.adm-fotos__etiqueta {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--adm-acento);
+  color: var(--adm-texto);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.adm-fotos__subiendo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  font-weight: 700;
+}
+
+.adm-fotos__acciones {
+  display: flex;
+  gap: 6px;
+}
+
+.adm-fotos__accion {
+  flex: 1;
+  min-height: 48px;
+  padding: 0 6px;
+  border: 1px solid var(--adm-borde);
+  border-radius: 10px;
+  background: var(--adm-tarjeta);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adm-fotos__accion--quitar {
+  color: var(--adm-rojo);
+}

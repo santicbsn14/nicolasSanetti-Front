@@ -1,0 +1,56 @@
+.adm-barra {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--adm-tarjeta);
+  border-bottom: 1px solid var(--adm-borde);
+  padding-top: env(safe-area-inset-top);
+}
+
+.adm-barra__interno {
+  display: grid;
+  grid-template-columns: minmax(96px, 1fr) auto minmax(96px, 1fr);
+  align-items: center;
+  max-width: 720px;
+  min-height: var(--adm-barra);
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.adm-barra__titulo {
+  font-size: 19px;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adm-barra__punto {
+  color: var(--adm-acento);
+}
+
+.adm-barra__volver,
+.adm-barra__salir {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 48px;
+  padding: 0 10px;
+  border: 0;
+  background: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.adm-barra__volver {
+  justify-self: start;
+}
+
+.adm-barra__salir {
+  justify-self: end;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

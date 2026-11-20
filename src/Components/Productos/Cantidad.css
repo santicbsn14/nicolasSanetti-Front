@@ -1,0 +1,47 @@
+.cantidad {
+  --lado: 48px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #cfc8bc;
+  border-radius: 2px;
+  background-color: #ffffff;
+}
+
+.cantidad--chica {
+  --lado: 44px;
+}
+
+.cantidad__btn {
+  width: var(--lado);
+  height: var(--lado);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #131313;
+  font-family: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cantidad__btn:hover:not(:disabled) {
+  background-color: #f4efe5;
+}
+
+.cantidad__btn:disabled {
+  color: #b5aea3;
+  cursor: default;
+}
+
+.cantidad__btn:focus-visible {
+  outline: 2px solid #e1a325;
+  outline-offset: -2px;
+}
+
+.cantidad__valor {
+  min-width: 32px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

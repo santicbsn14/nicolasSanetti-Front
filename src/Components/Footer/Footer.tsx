@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { buildWaLink, MENSAJE_TURNO } from '../../features/whatsapp/whatsapp';
+import { HORARIO_CORTO } from '../../features/contacto/datos';
 
 const Footer: FC = () => {
   return (
@@ -18,7 +19,9 @@ const Footer: FC = () => {
           <ul>
             <li><NavLink to="/" className="footer-link">Home</NavLink></li>
             <li><NavLink to="/servicios" className="footer-link">Servicios</NavLink></li>
-            <li><NavLink to="/historia" className="footer-link">Historia</NavLink></li>
+            <li><NavLink to="/galeria" className="footer-link">Galería</NavLink></li>
+            <li><NavLink to="/productos" className="footer-link">Productos</NavLink></li>
+            <li><NavLink to="/quienes-somos" className="footer-link">Quiénes somos</NavLink></li>
             <li>
               <a
                 href={buildWaLink(MENSAJE_TURNO)}
@@ -55,6 +58,7 @@ const Footer: FC = () => {
                 Colón 153, B2900 San Nicolás de Los Arroyos, Provincia de Buenos Aires
               </a>
             </li>
+            <li>{HORARIO_CORTO}</li>
           </ul>
         </div>
 

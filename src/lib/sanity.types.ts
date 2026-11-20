@@ -41,7 +41,13 @@ export interface Producto {
 // Lo que devuelve PRODUCTOS_QUERY (listado)
 export type ProductoResumen = Pick<
   Producto,
-  '_id' | 'nombre' | 'slug' | 'precio' | 'mostrarPrecio' | 'categoria'
+  '_id' | 'nombre' | 'slug' | 'precio' | 'mostrarPrecio' | 'variantes' | 'categoria'
+> & { imagen: SanityImagen | null }
+
+// Lo que devuelve PRODUCTOS_POR_IDS_QUERY (revalidar el pedido)
+export type ProductoParaPedido = Pick<
+  Producto,
+  '_id' | 'nombre' | 'slug' | 'precio' | 'mostrarPrecio' | 'variantes'
 > & { imagen: SanityImagen | null }
 
 export interface Trabajo {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { buildWaLink, MENSAJE_TURNO } from '../../features/whatsapp/whatsapp';
+import { AVISO_TURNO, HORARIO } from '../../features/contacto/datos';
 import './Contacto.css';
 
 const Contacto: React.FC = () => {
@@ -12,7 +13,13 @@ const Contacto: React.FC = () => {
           <ul>
             <li><span>📍</span> Dirección: Colón 153, San Nicolas, Buenos Aires</li>
             <li><span>📞</span> Teléfono: (3364) 614298</li>
-            <li><span>🕒</span> Horario: Lunes a Viernes de 9 a 20 hs / Sábados de 9 a 15 hs</li>
+            <li>
+              <span>🕒</span>
+              <div>
+                Horario: {HORARIO}
+                <small className="contacto-info__nota">{AVISO_TURNO}</small>
+              </div>
+            </li>
             <li>
               <span>📱</span> Redes:
               <a href="https://www.instagram.com/nicolassanetticoiffeur/" target="_blank" rel="noopener noreferrer">Instagram</a> /

@@ -1,0 +1,157 @@
+.adm-seccion {
+  padding: 18px 16px 4px;
+  margin-bottom: 16px;
+}
+
+.adm-seccion__titulo {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.adm-seccion__ayuda {
+  font-size: 15px;
+  color: var(--adm-texto-suave);
+  margin-bottom: 14px;
+}
+
+.adm-precio {
+  position: relative;
+}
+
+.adm-precio__signo {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: var(--adm-texto-suave);
+  pointer-events: none;
+}
+
+.adm-precio .adm-input {
+  padding-left: 32px;
+}
+
+/* Sección plegable de variantes */
+.adm-plegable__boton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 16px;
+  border: 0;
+  background: none;
+  font-size: 17px;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--adm-radio);
+}
+
+.adm-plegable {
+  margin-bottom: 16px;
+}
+
+.adm-plegable__cuerpo {
+  padding: 0 16px 16px;
+}
+
+.adm-variante {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px;
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid var(--adm-borde);
+}
+
+.adm-variante .adm-campo {
+  margin: 0;
+}
+
+.adm-variante__quitar {
+  grid-column: 1 / -1;
+  justify-self: start;
+  color: var(--adm-rojo);
+}
+
+/* Servicio: tres botones grandes */
+.adm-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.adm-opcion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 16px;
+  border: 2px solid var(--adm-borde);
+  border-radius: var(--adm-radio);
+  background: var(--adm-tarjeta);
+  font-size: 17px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.adm-opcion[aria-checked='true'] {
+  border-color: var(--adm-texto);
+  background: #f6efe0;
+}
+
+.adm-opcion__circulo {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #a59d93;
+}
+
+.adm-opcion[aria-checked='true'] .adm-opcion__circulo {
+  border: 7px solid var(--adm-texto);
+}
+
+/* Foto única de la galería */
+.adm-foto-unica {
+  margin-bottom: 12px;
+  border-radius: var(--adm-radio);
+  overflow: hidden;
+  background: #f0ece6;
+  border: 1px solid var(--adm-borde);
+  position: relative;
+}
+
+.adm-foto-unica img {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.adm-eliminar {
+  margin-top: 28px;
+  width: 100%;
+}
+
+.adm-pie__lento {
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--adm-texto-suave);
+}
+
+.adm-opciones__titulo {
+  padding: 0;
+  margin-bottom: 6px;
+}
+
+.adm-seccion--fotos {
+  padding-bottom: 18px;
+}

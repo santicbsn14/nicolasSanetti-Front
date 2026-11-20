@@ -1,0 +1,96 @@
+.adm-avisos {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.adm-aviso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 560px;
+  padding: 14px 8px 14px 18px;
+  border-radius: var(--adm-radio);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+  animation: adm-aviso-entra 0.2s ease-out;
+}
+
+.adm-aviso span {
+  flex: 1;
+}
+
+.adm-aviso--ok {
+  background: var(--adm-texto);
+  border-left: 6px solid var(--adm-acento);
+}
+
+.adm-aviso--error {
+  background: var(--adm-rojo);
+}
+
+.adm-aviso__cerrar {
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@keyframes adm-aviso-entra {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+.adm-dialogo__fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(19, 19, 19, 0.5);
+}
+
+.adm-dialogo {
+  width: 100%;
+  max-width: 480px;
+  padding: 24px 20px 20px;
+  background: var(--adm-tarjeta);
+  border-radius: 16px;
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
+.adm-dialogo__texto {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.adm-dialogo__botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 720px) {
+  .adm-dialogo__fondo {
+    align-items: center;
+  }
+}

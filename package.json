@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test src/features/pedido/pedido.test.ts"
   },
   "dependencies": {
     "@fontsource/mulish": "^5.2.5",
