@@ -177,7 +177,7 @@
 
 /* Portada con la foto de Nico (WEB-14): capa oscura suave para que «QUIÉNES SOMOS»
    en blanco se lea sobre cualquier parte de la foto. Solo en esta portada.
-   Arriba no oscurece: en escritorio ahí va la navbar transparente con texto oscuro. */
+   Arriba no oscurece (venía de cuando la navbar de escritorio era transparente). */
 .port-historia::after {
   content: '';
   position: absolute;
@@ -190,8 +190,13 @@
   z-index: 1;
 }
 
-/* Modo hamburguesa: la navbar es blanca y fija, así que la portada arranca debajo
-   (si no, tapa las caras) y el título va al centro de la foto. */
+/* La navbar es blanca y fija en todos los anchos, así que la portada arranca debajo
+   (si no, tapa las caras) y el título va al centro de la foto. En escritorio la navbar
+   mide 59 px; en modo hamburguesa, 64 px (67 px entre 481 y 768). */
+.port-historia {
+  margin-top: 59px;
+}
+
 @media (max-width: 1359px) {
   .port-historia {
     margin-top: 64px;

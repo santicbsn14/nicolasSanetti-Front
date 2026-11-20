@@ -259,3 +259,12 @@
   outline: 2px solid #131313;
   outline-offset: 3px;
 }
+
+/* Escritorio: la navbar es blanca y fija (59 px), así que la portada arranca debajo y
+   el título queda centrado en la foto. En modo hamburguesa la foto sigue debajo de la
+   navbar como antes (ahí solo tapa el techo). */
+@media (min-width: 1360px) {
+  .port-services {
+    margin-top: 59px;
+  }
+}

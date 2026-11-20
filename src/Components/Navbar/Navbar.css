@@ -4,16 +4,17 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: transparent;
+  /* Siempre blanca, en todos los anchos: transparente, el texto oscuro no se leía sobre
+     las portadas con foto (Servicios, Quiénes somos). La sombra aparece recién con scroll. */
+  background-color: #ffffff;
   z-index: 50;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   padding: 10px 20px;
   box-sizing: border-box;
 }
 
-/* Con scroll: fondo blanco para que el texto oscuro se lea sobre cualquier sección */
+/* Con scroll: sombra para separarla del contenido */
 .navbar--scrolled {
-  background-color: #ffffff;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -295,23 +296,5 @@
 
   .navbar__hamburger span {
     width: 25px;
-  }
-}
-
-/* En modo hamburguesa la navbar va siempre con fondo blanco: transparente, el logo
-   oscuro no se leía sobre las portadas con foto. La sombra aparece recién con scroll
-   (.navbar--scrolled). En escritorio (≥ 1360 px) sigue transparente hasta scrollear. */
-@media (max-width: 1359px) {
-  .navbar {
-    background-color: #ffffff;
-  }
-}
-
-/* En modo hamburguesa la navbar va siempre con fondo blanco: transparente, el logo
-   oscuro no se leía sobre las portadas con foto. La sombra aparece recién con scroll
-   (.navbar--scrolled). En escritorio (≥ 1360 px) sigue transparente hasta scrollear. */
-@media (max-width: 1359px) {
-  .navbar {
-    background-color: #ffffff;
   }
 }
